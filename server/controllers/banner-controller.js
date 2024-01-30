@@ -31,4 +31,24 @@ const addBanner = async (req, res, next) => {
         next(error);
     }
 }
-module.exports = { getAllBanners, addBanner };
+
+const deleteBanner = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const bannerExist = await Banner.findOne({ _id: id });
+        if (!bannerExist) {
+            const error = {
+                status: 400,
+                message: "banner does not exist",
+                extraDeatils: "error from client input"
+            }
+            next(error);
+        } else {
+            await Banner.deleteOne({ _id: id });
+            res.status(200).json({ msg: "banner deleted succesfully" });
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+module.exports = { getAllBanners, addBanner, deleteBanner };
