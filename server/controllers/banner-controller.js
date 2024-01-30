@@ -13,7 +13,7 @@ const getAllBanners = async (req, res, next) => {
 const addBanner = async (req, res, next) => {
     // console.log("addBanner called");
     try {
-        const { url } = req.body;
+        const { url, name } = req.body;
         const bannerExist = await Banner.findOne({ url }); // {url: url}
         if (bannerExist) {
             const error = {
@@ -23,7 +23,7 @@ const addBanner = async (req, res, next) => {
             }
             next(error);
         } else {
-            await Banner.create({ url }); // {url: url}
+            await Banner.create({ url, name }); // {url: url,name: name}
             return res.status(200).json({ msg: "banner added succesfully" });
         }
 
