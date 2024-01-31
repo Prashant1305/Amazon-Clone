@@ -2,7 +2,7 @@
 const validate = (schema) => async (req, res, next) => {
     try {
         const pasrseBody = await schema.parseAsync(req.body);
-        console.log(pasrseBody);
+        // console.log(pasrseBody);
 
         // req.body = pasrseBody;
         // console.log("validated succesfully");

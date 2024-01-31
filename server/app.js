@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const connectDb = require("./utils/db");
 const bannnerRoute = require("./routes/banner-routes");
+const authRoute = require("./routes/auth-routes");
 const errorMiddleware = require("./middleware/error-middleware");
 const cors = require("cors");
 
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", bannnerRoute);
+app.use("/api/auth", authRoute);
 
 app.use(errorMiddleware);
 

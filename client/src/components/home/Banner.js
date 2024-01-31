@@ -28,10 +28,10 @@ function Banner() {
         return <h1>Loading...</h1>
     }
     return (
-        <Carousel className='carasoul' animation='slide' indicators={false}  >
+        <Carousel className='carasousel' animation='slide' indicators={false} navButtonAlwaysVisible={true}  >
             {
                 data.map((item) => {
-                    return (<img src={item.url} key={item._id} alt="Failed to load" className='banner.img' />)
+                    return (<img src={item.url} key={item._id} alt="Failed to load" className='banner_img' />)
                 })
             }
         </Carousel>
