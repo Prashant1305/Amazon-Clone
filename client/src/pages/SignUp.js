@@ -19,9 +19,14 @@ function SignUp() {
             let temp = userData;
 
             delete temp.passwordAgain;
-            const resp = login(temp);
-            console.log(resp);
-            navigate("/signin");
+            login(temp).then((res) => {
+                console.log(res.data);
+                navigate("/signin");
+                alert(res.data.msg);
+            }).catch((error) => {
+                console.log(error);
+            });
+
         }
         else {
             alert("password did not match");
