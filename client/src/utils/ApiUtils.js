@@ -10,7 +10,7 @@ export const getAllBanner = () => {
     return response; // response is promise
 }
 
-export const login = (data) => {
+export const signup = (data) => {
     const url = `${baseUrl}/api/auth/register`;
     const response = axios.post(url, data, {
         headers: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Sign.css";
 import { useNavigate } from 'react-router-dom';
-import { login } from '../utils/ApiUtils';
+import { signup } from '../utils/ApiUtils';
 
 function SignUp() {
     const [userData, setUserData] = useState({
@@ -19,8 +19,8 @@ function SignUp() {
             let temp = userData;
 
             delete temp.passwordAgain;
-            login(temp).then((res) => {
-                console.log(res.data);
+            signup(temp).then((res) => {
+                // console.log(res.data);
                 navigate("/signin");
                 alert(res.data.msg);
             }).catch((error) => {
