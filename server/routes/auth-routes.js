@@ -6,7 +6,7 @@ const { registerSchema, loginSchema } = require("../validator/user-validator");
 
 router.get("/", home);
 router.post("/register", validate(registerSchema), register);
-router.get("/login", validate(loginSchema), login);
+router.post("/login", validate(loginSchema), login);
 
 
 

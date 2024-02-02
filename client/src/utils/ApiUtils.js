@@ -19,3 +19,14 @@ export const signup = (data) => {
     });
     return response;
 }
+
+export const signin = (data) => {
+    console.log(data);
+    const url = `${baseUrl}/api/auth/login`;
+    const response = axios.post(url, data, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    return response;
+}
