@@ -34,5 +34,5 @@ const productSchema = new mongoose.Schema({
     required: false,
   },
 });
-const product = new mongoose.model("banners", productSchema);
+const product = new mongoose.model("product", productSchema);
 module.exports = product;

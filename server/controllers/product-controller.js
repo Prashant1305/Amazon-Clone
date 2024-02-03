@@ -25,7 +25,7 @@ const addProduct = async (req, res, next) => {
   }
 };
 
-const deletProduct = async (req, res, next) => {
+const deleteProduct = async (req, res, next) => {
   try {
     const id = req.params.id;
     const productExist = await Product.findOne({ _id: id });
@@ -39,4 +39,4 @@ const deletProduct = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { getAllProducts, addProduct, deletProduct };
+module.exports = { getAllProducts, addProduct, deleteProduct };
