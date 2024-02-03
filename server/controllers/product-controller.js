@@ -13,8 +13,8 @@ const getAllProducts = async (req, res, next) => {
 const addProduct = async (req, res, next) => {
   try {
     const { url, name } = req.body;
-    const bannerExist = await Product.findOne({ url }); // {url: url}
-    if (bannerExist) {
+    const productExist = await Product.findOne({ url }); // {url: url}
+    if (productExist) {
       res.status(202).json({ msg: "banner already exist" });
     } else {
       await Product.create({ url, name }); // {url: url,name: name}
