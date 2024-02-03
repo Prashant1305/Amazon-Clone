@@ -41,4 +41,8 @@ const login = async (req, res, next) => {
     }
 }
 
-module.exports = { home, register, login };
+const getClientData = async (req, res, next) => {
+    return res.status(200).json({ msg: req.clientAuthData });
+}
+
+module.exports = { home, register, login, getClientData };
