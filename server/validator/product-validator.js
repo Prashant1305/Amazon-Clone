@@ -19,7 +19,7 @@ const productSchema = z.object({
   url: z
     .string({ required_error: "url is required" })
     .trim()
-    .email({ message: "Invalid url address" })
+
     .min(3, { message: "url must be atleast 3 characters" })
     .max(255, { message: "url must not be more than 255 characters" }),
 
