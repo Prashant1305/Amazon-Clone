@@ -7,7 +7,6 @@ import NewNav from '../components/newNavbar/NewNav.jsx'
 function Home() {
     return (
         <>
-            <NewNav />
             <div className='home_section'>
                 <div className='banner_part'>
                     <Banner />
