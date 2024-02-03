@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import "./Sign.css";
 import { useNavigate } from "react-router-dom";
 import { signin } from '../utils/ApiUtils';
+import { MyLoginValues } from '../Context/AuthContext';
 
 function SignIn() {
     const [userData, setUserData] = useState({
         email: "",
         password: "",
     })
+    const { setIsLogin } = MyLoginValues();
     const navigate = useNavigate();
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -17,13 +19,16 @@ function SignIn() {
                 // console.log(res);
                 if (res.status === 202) {
                     alert(`${res.data.msg}`);
+                    setUserData({ ...userData, "password": "" });
                 }
                 else {
                     navigate("/");
+                    localStorage.setItem("token", JSON.stringify(res.data.token));
+                    setIsLogin(true);
                     alert("login successfull");
                 }
             })
-            .catch((error) => { console.error(); })
+            .catch((error) => { console.log(error); })
     }
     const handleChange = (e) => {
         // console.log(e.target.id);
