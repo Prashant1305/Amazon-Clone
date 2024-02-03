@@ -5,6 +5,7 @@ import ErrorRoute from './pages/ErrorRoute'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
+import SignOut from './pages/SignOut';
 
 
 
@@ -16,6 +17,8 @@ function Routing() {
             <Route index element={<Home />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
+            <Route path="signout" element={<SignOut />} />
+
             <Route path="*" element={<ErrorRoute />} />
         </Route>
     ));
