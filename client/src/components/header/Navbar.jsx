@@ -4,8 +4,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Avatar from '@mui/material/Avatar';
+import { NavLink } from 'react-router-dom';
+import { MyLoginValues } from '../../Context/AuthContext';
 
 function Navbar() {
+    const { isLogin } = MyLoginValues();
     return (
         <header>
             <nav>
@@ -21,6 +24,9 @@ function Navbar() {
                     </div>
                 </div>
                 <div className='right'>
+                    <div className="nav_btn">
+                        {!isLogin && <NavLink to="/signin">Sign in</NavLink>}{isLogin && <NavLink to="/signout">Sign out</NavLink>}
+                    </div>
                     <div className="nav_btn">
                         {/* <a href='/'></a> */}
                     </div>

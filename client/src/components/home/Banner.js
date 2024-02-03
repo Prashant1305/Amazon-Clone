@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./Banner.css";
-import { baseUrl } from "../../Constant";
+import { getAllBanner } from '../../utils/ApiUtils';
 
 function Banner() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchBannerData = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${baseUrl}/api/banner`);
-      if (response.status === 200) {
-        const response_data = await response.json();
-        setData(response_data.msg);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
+    const fetchBannerData = () => {
+        // try {
+        //     getAllBanner();
+        //     setIsLoading(true);
+        //     const response = await fetch(`${baseUrl}/api/banner`);
+        //     if (response.status == 200) {
+        //         const response_data = await response.json();
+        //         setData(response_data.msg);
+        //         setIsLoading(false);
+        //     }
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        const res = getAllBanner().then((res) => {
+            // console.log(res.data.msg);
+            setData(res.data.msg);
+            setIsLoading(false);
+        }).catch((err) => console.log(err));
     }
   };
 
