@@ -20,7 +20,7 @@ function Banner() {
         // } catch (error) {
         //     console.log(error);
         // }
-        const res = getAllBanner().then((res) => {
+        getAllBanner().then((res) => {
             // console.log(res.data.msg);
             setData(res.data.msg);
             setIsLoading(false);

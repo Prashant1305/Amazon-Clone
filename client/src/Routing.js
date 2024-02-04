@@ -6,6 +6,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import SignOut from './pages/SignOut';
+import Error from './pages/Error';
 
 
 
@@ -13,7 +14,7 @@ import SignOut from './pages/SignOut';
 function Routing() {
     const router = createBrowserRouter(createRoutesFromElements(
 
-        <Route path="/" element={<RootLayout />} >
+        <Route path="/" element={<RootLayout />} errorElement={<Error />}>
             <Route index element={<Home />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
