@@ -7,7 +7,7 @@ function Temp() {
     const cleanNumberString = (str) => {
         let ans = "";
         for (let i of str) {
-            if (i == '0' || i === '1' || i === '2' || i === '3' || i === '4' || i === '5' || i === '6' || i === '7' || i === '8' || i === '9' || i === '.') {
+            if (i === '0' || i === '1' || i === '2' || i === '3' || i === '4' || i === '5' || i === '6' || i === '7' || i === '8' || i === '9' || i === '.') {
                 ans += i;
             }
         }
@@ -16,8 +16,9 @@ function Temp() {
         }
         return ans;
     }
+
     const cleanData = () => {
-        let wrkData = data.map(async (item) => {
+        data.map(async (item) => {
             try {
                 const res = await axios.get(item.img_link);
                 if (res.status === 200) {
@@ -36,7 +37,7 @@ function Temp() {
                     }
                     try {
                         console.log(ob);
-                        const postRes = await axios.post(`${baseUrl}/api/product/add`, ob, {
+                        await axios.post(`${baseUrl}/api/product/add`, ob, {
                             headers: {
                                 "Content-Type": "application/json",
                             }
