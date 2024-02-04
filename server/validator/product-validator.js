@@ -20,7 +20,7 @@ const productSchema = z.object({
 
   actual_price: z
     .number({ required_error: "actual_price is required" })
-    .nonnegative({ message: "actual_price must be greater than 0" }),
+    .nonnegative({ message: "actual_price must be greater than equal to 0" }),
 
   discounted_price: z
     .number({ required_error: "discounted_price is required" })
@@ -28,7 +28,7 @@ const productSchema = z.object({
 
   discount_percentage: z
     .number({ required_error: "discount_percentage is required" })
-    .nonnegative({ message: "discount_percentage must be greater than 0" }),
+    .nonnegative({ message: "discount_percentage must be greater than equal to 0" }),
 
   about: z
     .string({ required_error: "about is required" })
@@ -48,7 +48,7 @@ const productSchema = z.object({
   rating_count: z
     .number({ required_error: "rating count is required" })
     .int({ message: "rating count must be an integer" }) // value must be an integer
-    .nonnegative({ message: "rating Count must be greater than 0" })
+    .nonnegative({ message: "rating Count must be greater than equal to 0" })
 });
 
 module.exports = { productSchema };
