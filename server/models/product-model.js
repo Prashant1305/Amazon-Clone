@@ -4,30 +4,35 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  name: {
+    type: String,
+    required: true,
+
+  },
+
   category: {
     type: String,
     required: true,
-
-    
   },
-  price: {
+
+  actual_price: {
     type: Number,
     required: true,
-
-
   },
-  rating: {
+
+  discounted_price: {
     type: Number,
     required: true,
-   
   },
+
+  discount_percentage: {
+    type: Number,
+    required: true,
+  },
+
   about: {
     type: String,
-    required: true,
-
-  },
-  rating_count: {
-    type: Number,
     required: true,
 
   },
@@ -37,8 +42,15 @@ const productSchema = new mongoose.Schema({
     required: true,
 
   },
-  name: {
-    type: String,
+
+  rating: {
+    type: Number,
+    required: true,
+
+  },
+
+  rating_count: {
+    type: Number,
     required: true,
 
   },

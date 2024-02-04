@@ -36,7 +36,7 @@ function AuthContext({ children }) {
   }, [isLogin]);
 
   return (
-    <clientContext.Provider value={{ isLogin, setIsLogin }}>
+    <clientContext.Provider value={{ isLogin, setIsLogin, clientData, token }}>
       {children}
     </clientContext.Provider>
   );
