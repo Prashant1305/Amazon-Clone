@@ -8,8 +8,8 @@ function App() {
   return (
     <AuthContext>
       <div className="App">
-        {/* <Routing /> */}
-        <Temp />
+        <Routing />
+        {/* <Temp /> //mount this to upload product data */}
       </div>
     </AuthContext>
   );
