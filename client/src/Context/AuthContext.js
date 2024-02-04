@@ -32,9 +32,7 @@ function AuthContext({ children }) {
     // console.log("clientData fetched");
   };
   useEffect(() => {
-    return () => {
-      fetchClientData();
-    };
+    fetchClientData();
   }, [isLogin]);
 
   return (
