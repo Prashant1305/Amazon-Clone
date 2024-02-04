@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '../components/home/Banner'
 import "./Home.css"
 import Slide from '../components/home/Slide'
-import NewNav from '../components/newNavbar/NewNav.jsx'
+import { topTendiscountedProducts } from '../utils/ApiUtils.js';
+
+
 
 function Home() {
+
+
     return (
         <>
             <div className='home_section'>
@@ -28,4 +32,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;

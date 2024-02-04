@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use("/api", bannnerRoute);
 app.use("/api/auth", authRoute);
-app.use("/api", productRoute);
+app.use("/api/product", productRoute);
 
 app.use(errorMiddleware);
 

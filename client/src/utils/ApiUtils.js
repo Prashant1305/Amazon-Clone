@@ -40,4 +40,13 @@ export const getAllClientData = (token) => {
   return response;
 };
 
-
+export const topTendiscountedProducts = async () => {
+  const url = `${baseUrl}/api/product/toptendiscountedProducts`;
+  const response = axios.get(url);
+  return response;
+}
+export const topTwentyRatedProducts = async () => {
+  const url = `${baseUrl}/api/product/topTwentyRatedProducts`;
+  const response = axios.get(url);
+  return response;
+}

@@ -38,7 +38,7 @@ function Banner() {
             className="carasousel"
             animation="slide"
             indicators={false}
-            navButtonAlwaysVisible={true}
+        // navButtonAlwaysVisible={true}
         >
             {data.map((item) => {
                 return (
