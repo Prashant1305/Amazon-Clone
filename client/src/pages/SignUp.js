@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./Sign.css";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { signup } from '../utils/ApiUtils';
 
 function SignUp() {
@@ -67,7 +67,11 @@ function SignUp() {
                                 <label htmlFor='passwordAgain'>Password Again</label>
                                 <input type='password' name="asswordAgain" id="passwordAgain" onChange={(e) => { handleChange(e) }} value={userData.passwordAgain} />
                             </div>
-                            <button className='signin_btn' >Submit</button>
+                            <button className='signin_btn' >Continue</button>
+                            <div className='signin_info'>
+                                <p>Already have an account?</p>
+                                <NavLink to='../signin'>Signin</NavLink>
+                            </div>
                         </form>
                     </div>
                 </div>

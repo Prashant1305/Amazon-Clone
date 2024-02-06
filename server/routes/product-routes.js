@@ -1,15 +1,11 @@
 const express = require("express");
-// const Product = require("../models/product-model");
-const {
-  getAllProducts,
-  addProduct,
-  deleteProduct,
-} = require("../controllers/product-controller");
-const validate = require("../middleware/validate-middleware");
-const { productSchema } = require("../validator/product-validator");
+const { topTendiscountedProducts, topTwentyRatedProducts, getSingleProductDetails } = require("../controllers/product-controller");
+
 const router = express.Router();
-router.get("/product/all", getAllProducts);
-router.post("/product/add", validate(productSchema), addProduct);
-router.delete("/product/delete/:id", deleteProduct);
+
+router.get("/toptendiscountedProducts", topTendiscountedProducts);
+router.get("/topTwentyRatedProducts", topTwentyRatedProducts);
+router.get("/getsingleproductdetails/:id", getSingleProductDetails);
+
 
 module.exports = router;
