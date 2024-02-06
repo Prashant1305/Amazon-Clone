@@ -18,7 +18,7 @@ export default function HomePageContext({ children }) {
     const itemInStore = () => {
         topTwentyRatedProducts()
             .then((res) => {
-                console.log(res.data.msg);
+                // console.log(res.data.msg);
                 setItemInStoreData(res.data.msg);
             })
             .catch((error) => {

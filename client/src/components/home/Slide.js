@@ -2,10 +2,9 @@ import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from "@mui/material";
-import { products } from "./productdata";
-import { v4 as uuid } from "uuid";
 import "./Slide.css";
 import { HomepageValue } from "../../Context/HomePageContext"
+import { NavLink } from 'react-router-dom';
 
 const responsive = {
     desktop: {
@@ -57,15 +56,16 @@ const Slide = ({ title }) => {
                     title === "Today's Deal" && todaysDealData.map((e) => {
 
                         return (
-                            <div className="products_items" key={uuid()}>
-                                <div className="product_img">
-                                    <img src={e.url} alt="product" />
+                            <NavLink to={`./product/${e._id}`} key={e._id}>
+                                <div className="products_items" >
+                                    <div className="product_img">
+                                        <img src={e.url} alt="product" />
+                                    </div>
+                                    <p className="products_name">{e.name.substr(0, 24)}...</p>
+                                    <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
+                                    <p className="products_explore">{e.category.substr(0, 24)}...</p>
                                 </div>
-                                <p className="products_name">{e.name.substr(0, 24)}...</p>
-                                <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
-                                <p className="products_explore">{e.category.substr(0, 24)}...</p>
-                            </div>
-                            // </NavLink>
+                            </NavLink>
                         )
                     })
                 }
@@ -73,15 +73,16 @@ const Slide = ({ title }) => {
                     title === "Item in store" && itemInStoreData.map((e) => {
 
                         return (
-                            <div className="products_items" key={uuid()}>
-                                <div className="product_img">
-                                    <img src={e.url} alt="product" />
+                            <NavLink to={`./product/${e._id}`} key={e._id}>
+                                <div className="products_items" >
+                                    <div className="product_img">
+                                        <img src={e.url} alt="product" />
+                                    </div>
+                                    <p className="products_name">{e.name.substr(0, 24)}...</p>
+                                    <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
+                                    <p className="products_explore">{e.category.substr(0, 24)}...</p>
                                 </div>
-                                <p className="products_name">{e.name.substr(0, 24)}...</p>
-                                <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
-                                <p className="products_explore">{e.category.substr(0, 24)}...</p>
-                            </div>
-                            // </NavLink>
+                            </NavLink>
                         )
                     })
                 }

@@ -37,9 +37,10 @@ function Temp() {
                     }
                     try {
                         console.log(ob);
-                        await axios.post(`${baseUrl}/api/product/add`, ob, {
+                        await axios.post(`${baseUrl}/api/admin/product/add`, ob, {
                             headers: {
                                 "Content-Type": "application/json",
+                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWJkZWZlZjU2ZWVmZTE4ZWZmODQzZmIiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTcwNzE0NDk1MywiZXhwIjoxNzA5NzM2OTUzfQ.uAOGOwm26jkLpdtPj8jEbFwC5maKzanTRmZen-IzMyA"
                             }
                         });
                     } catch (error) {

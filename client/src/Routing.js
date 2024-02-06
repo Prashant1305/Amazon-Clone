@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import SignOut from './pages/SignOut';
 import Error from './pages/Error';
 import HomePageContext from './Context/HomePageContext';
+import Product from './pages/Product';
 
 
 
@@ -20,6 +21,7 @@ function Routing() {
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="signout" element={<SignOut />} />
+            <Route path="product/:id" element={<Product />} />
 
             <Route path="*" element={<ErrorRoute />} />
         </Route>

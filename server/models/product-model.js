@@ -3,12 +3,12 @@ const productSchema = new mongoose.Schema({
   id: {
     type: String,
     required: true,
+    unique: true
   },
 
   name: {
     type: String,
     required: true,
-
   },
 
   category: {
@@ -40,19 +40,16 @@ const productSchema = new mongoose.Schema({
   url: {
     type: String,
     required: true,
-
   },
 
   rating: {
     type: Number,
     required: true,
-
   },
 
   rating_count: {
     type: Number,
     required: true,
-
   },
 });
 const product = new mongoose.model("product", productSchema);
