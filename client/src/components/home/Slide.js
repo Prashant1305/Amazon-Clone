@@ -2,9 +2,9 @@ import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from "@mui/material";
-import { products } from "./productdata";
-import { v4 as uuid } from "uuid";
 import "./Slide.css";
+import { HomepageValue } from "../../Context/HomePageContext"
+import { NavLink } from 'react-router-dom';
 
 const responsive = {
     desktop: {
@@ -22,6 +22,13 @@ const responsive = {
 };
 
 const Slide = ({ title }) => {
+    const { todaysDealData, itemInStoreData } = HomepageValue();
+    if (title === "Today's Deal" && todaysDealData.length === 0) {
+        return <h1>Loading</h1>
+    }
+    if (title === "Item in store" && itemInStoreData.length === 0) {
+        return <h1>Loading</h1>
+    }
     return (
         <div className="products_section">
             <div className="products_deal">
@@ -46,18 +53,36 @@ const Slide = ({ title }) => {
                 containerClass="carousel-container"
             >
                 {
-                    products.map((e) => {
+                    title === "Today's Deal" && todaysDealData.map((e) => {
+
                         return (
-                            // <NavLink to={`/getproductsone/${e.id}`}>
-                            <div className="products_items" key={uuid()}>
-                                <div className="product_img">
-                                    <img src={e.url} alt="product" />
+                            <NavLink to={`./product/${e._id}`} key={e._id}>
+                                <div className="products_items" >
+                                    <div className="product_img">
+                                        <img src={e.url} alt="product" />
+                                    </div>
+                                    <p className="products_name">{e.name.substr(0, 24)}...</p>
+                                    <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
+                                    <p className="products_explore">{e.category.substr(0, 24)}...</p>
                                 </div>
-                                <p className="products_name">{e.title.shortTitle}</p>
-                                <p className="products_offer" style={{ color: "#  007185" }}>{e.discount}</p>
-                                <p className="products_explore">{e.tagline}</p>
-                            </div>
-                            // </NavLink>
+                            </NavLink>
+                        )
+                    })
+                }
+                {
+                    title === "Item in store" && itemInStoreData.map((e) => {
+
+                        return (
+                            <NavLink to={`./product/${e._id}`} key={e._id}>
+                                <div className="products_items" >
+                                    <div className="product_img">
+                                        <img src={e.url} alt="product" />
+                                    </div>
+                                    <p className="products_name">{e.name.substr(0, 24)}...</p>
+                                    <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
+                                    <p className="products_explore">{e.category.substr(0, 24)}...</p>
+                                </div>
+                            </NavLink>
                         )
                     })
                 }

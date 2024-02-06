@@ -1,52 +1,39 @@
 const Product = require("../models/product-model");
-const getAllProducts = async (req, res, next) => {
+
+const topTendiscountedProducts = async (req, res, next) => {
   try {
-    const response = await Product.find();
-    console.log(response);
+    const response = await Product.find().sort({ discount_percentage: -1 }).limit(10).select({ _id: 1, url: 1, name: 1, discount_percentage: 1, category: 1 });
+    console.log("topTendiscountedProducts data sent");
     res.status(200).json({ msg: response });
   } catch (error) {
-    console.log(`error from Product controller:${error}`);
+    console.log(error);
     next(error);
   }
-};
+}
 
-const addProduct = async (req, res, next) => {
+const topTwentyRatedProducts = async (req, res, next) => {
   try {
-    const { price, rating, rating_count, id, about, category, url, name } =
-      req.body;
-    const productExist = await Product.findOne({ url }); // {url: url}
-    if (productExist) {
-      res.status(202).json({ msg: "Product already exist" });
-    } else {
-      await Product.create({
-        price,
-        rating,
-        rating_count,
-        id,
-        about,
-        category,
-        url,
-        name,
-      }); // {url: url,name: name}
-      return res.status(200).json({ msg: "Product added succesfully" });
+    const response = await Product.find({}).sort({ rating: -1 }).limit(10).select({ _id: 1, url: 1, name: 1, discount_percentage: 1, category: 1 });
+    console.log("topTwentyRatedProducts data sent");
+    res.status(200).json({ msg: response });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
+const getSingleProductDetails = async (req, res, next) => {
+  try {
+    const _id = req.params.id;
+    console.log("Single product all details sent");
+    const singleProduct = await Product.find({ _id });
+    if (!singleProduct) {
+      res.status(202).json({ msg: "product not found" });
     }
+    res.status(200).json({ msg: singleProduct });
   } catch (error) {
     next(error);
   }
-};
+}
 
-const deleteProduct = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const productExist = await Product.findOne({ _id: id });
-    if (!productExist) {
-      res.status(202).json({ msg: "Product does not exist" });
-    } else {
-      await Product.deleteOne({ _id: id });
-      res.status(200).json({ msg: "Product deleted succesfully" });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
-module.exports = { getAllProducts, addProduct, deleteProduct };
+module.exports = { topTendiscountedProducts, topTwentyRatedProducts, getSingleProductDetails };

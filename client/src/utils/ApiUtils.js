@@ -39,3 +39,20 @@ export const getAllClientData = (token) => {
   });
   return response;
 };
+
+export const topTendiscountedProducts = () => {
+  const url = `${baseUrl}/api/product/toptendiscountedProducts`;
+  const response = axios.get(url);
+  return response;
+};
+
+export const topTwentyRatedProducts = () => {
+  const url = `${baseUrl}/api/product/topTwentyRatedProducts`;
+  const response = axios.get(url);
+  return response;
+};
+
+export const singleProductDetails = ({ id }) => {
+  const url = `${baseUrl}/api/product/getsingleproductdetails/${id}`;
+  return axios.get(url);
+}
