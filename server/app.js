@@ -12,7 +12,7 @@ const cors = require("cors");
 
 // handling cors error
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.CORS_ORIGIN,
   methods: "GET,POST, DELETE, PATCH, HEAD",
   credentials: true,
 };
