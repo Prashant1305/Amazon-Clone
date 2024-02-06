@@ -36,7 +36,8 @@ function Navbar() {
                         </Badge>
                         <p>Cart</p>
                     </div>
-                    <Avatar className='avatar' />
+                    <NavLink to="/"><div className='avatar'><Avatar /></div></NavLink>
+
                 </div>
             </nav>
         </header>

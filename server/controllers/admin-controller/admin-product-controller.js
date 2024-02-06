@@ -13,7 +13,7 @@ const getAllProducts = async (req, res, next) => {
 
 const addProduct = async (req, res, next) => {
     try {
-        const { id, name, category, actual_price, discounted_price, discount_percentage, about, url, rating, rating_count } = req.body;
+        const { id, name, stock_quantity, category, actual_price, discounted_price, discount_percentage, about, url, rating, rating_count } = req.body;
         const productExist = await Product.findOne({ url }); // {url: url}
         if (productExist) {
             console.log("Product already exist");
@@ -22,6 +22,7 @@ const addProduct = async (req, res, next) => {
             await Product.create({
                 id,
                 name,
+                stock_quantity,
                 category,
                 actual_price,
                 discounted_price,

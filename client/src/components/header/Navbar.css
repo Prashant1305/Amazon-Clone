@@ -86,9 +86,16 @@ header nav .right .nav_btn a {
 
 
 
-header nav .right .nav_btn a:hover {
-    border: 1px solid white;
+header nav a:hover {
+    /* border: 1px solid white; */
+    /* font-size: larger; */
+    zoom: 1.1;
+
 }
+
+/* header nav .right .avtar:hover {
+    zoom: 1.1;
+} */
 
 header nav .right .cart_btn {
     display: flex;
@@ -104,7 +111,8 @@ header nav .right .cart_btn {
 }
 
 header nav .right .cart_btn:hover {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    zoom: 1.1;
 }
 
 header nav .right .cart_btn #icon {
