@@ -25,15 +25,22 @@ function Cart() {
         }
         calculateTotal();
     }, [cartData]);
+    if (cartData.length === 0) {
+        return (<div className={styles.cart}>
+            <h1 className={styles.cartHeading}>Cart Empty!</h1>
+        </div>)
+    }
 
     return (
-        <div className={styles.cart}>
-            <h2 className={styles.cartHeading}>Shopping Cart</h2>
-            <div>
-                {cartData.map((item) => <CartItem {...item} key={item._id} />)}
+        <>
+            <div className={styles.cart}>
+                <h2 className={styles.cartHeading}>Shopping Cart</h2>
+                <div>
+                    {cartData.map((item) => <CartItem {...item} key={item._id} />)}
+                </div>
+                <h1>Total Amount - {' '} &#8377; {total}</h1>
             </div>
-            <h1>Total Amount - {' '} &#8377; {total}</h1>
-        </div>
+        </>
     )
 }
 

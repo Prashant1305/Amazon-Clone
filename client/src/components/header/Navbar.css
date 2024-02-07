@@ -46,7 +46,7 @@ header nav .left input {
 
 header nav .left .search_icon {
     background-color: #febd69;
-    height: 40px;
+    height: 38px;
     width: 40px;
     display: flex;
     justify-content: center;
@@ -62,8 +62,9 @@ header nav .nav_searchbaar {
     align-items: center;
 }
 
-/* header nav .left input:focus{
-    border: 2px solid #febd69;
+
+/* header nav .left input:focus {
+    border: 2px solid #08f5a6;
 } */
 
 header nav .right {
