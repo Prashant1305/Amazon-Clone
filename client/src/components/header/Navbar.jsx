@@ -30,12 +30,14 @@ function Navbar() {
                     <div className="nav_btn">
                         {/* <a href='/'></a> */}
                     </div>
-                    <div className="cart_btn">
-                        <Badge badgeContent={4} color="primary">
-                            <ShoppingCartIcon id="icon" />
-                        </Badge>
-                        <p>Cart</p>
-                    </div>
+                    <NavLink to='./cart'>
+                        <div className="cart_btn">
+                            <Badge badgeContent={4} color="primary">
+                                <ShoppingCartIcon id="icon" />
+                            </Badge>
+                            <p>Cart</p>
+                        </div>
+                    </NavLink>
                     <NavLink to="/"><div className='avatar'><Avatar /></div></NavLink>
 
                 </div>

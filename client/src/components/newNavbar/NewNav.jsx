@@ -15,7 +15,7 @@ function NewNav() {
                     <p>Amazon Pay</p>
                 </div>
                 <div className="right_data">
-                    <img src="./nav.jpg" alt="failed to load" />
+                    <img src="../../../../../../nav.jpg" alt="failed to load" />
                 </div>
             </div>
         </div>

@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import { singleProductDetails } from "../utils/ApiUtils";
 import { Divider } from "@mui/material";
 import "./Product.css";
+import { CartValue } from "../Context/CartContext";
 
 function Product() {
+    const { setCartData } = CartValue();
     const _id = useParams();
     const [productData, setProductData] = useState();
 
@@ -30,7 +32,9 @@ function Product() {
                         <div className="left_cart">
                             <img src={`${productData.url}`} alt="failed to load" />
                             <div className="cart_btn">
-                                <button className="cart_btn1">Add to Cart</button>
+                                <button className="cart_btn1" onClick={() => {
+                                    setCartData({ task: "addInCart", productData });
+                                }}>Add to Cart</button>
                                 <button className="cart_btn2">Buy Now</button>
                             </div>
                         </div>
