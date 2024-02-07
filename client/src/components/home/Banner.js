@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Carousel from 'react-material-ui-carousel';
+import React, { useEffect, useState } from "react";
+import Carousel from "react-material-ui-carousel";
 import "./Banner.css";
-import { getAllBanner } from '../../utils/ApiUtils';
+import { getAllBanner } from "../../utils/ApiUtils";
 
 function Banner() {
     const [data, setData] = useState();
@@ -20,7 +20,7 @@ function Banner() {
         // } catch (error) {
         //     console.log(error);
         // }
-        const res = getAllBanner().then((res) => {
+        getAllBanner().then((res) => {
             // console.log(res.data.msg);
             setData(res.data.msg);
             setIsLoading(false);
@@ -31,17 +31,27 @@ function Banner() {
         fetchBannerData();
     }, []);
     if (isLoading) {
-        return <h1>Loading...</h1>
+        return <h1>Loading...</h1>;
     }
     return (
-        <Carousel className='carasousel' animation='slide' indicators={false} navButtonAlwaysVisible={true}  >
-            {
-                data.map((item) => {
-                    return (<img src={item.url} key={item._id} alt="Failed to load" className='banner_img' />)
-                })
-            }
+        <Carousel
+            className="carasousel"
+            animation="slide"
+            indicators={false}
+        // navButtonAlwaysVisible={true}
+        >
+            {data.map((item) => {
+                return (
+                    <img
+                        src={item.url}
+                        key={item._id}
+                        alt="Failed to load"
+                        className="banner_img"
+                    />
+                );
+            })}
         </Carousel>
-    )
+    );
 }
 
-export default Banner
+export default Banner;

@@ -14,7 +14,7 @@ function Navbar() {
             <nav>
                 <div className='left'>
                     <div className='navlogo'>
-                        <img src="./amazon_PNG25.png" alt="failed to load" />
+                        <NavLink to='/'><img src="../amazon_PNG25.png" alt="failed to load" /></NavLink>
                     </div>
                     <div className='nav_searchbaar'>
                         <input type="text" name="" id="" />
