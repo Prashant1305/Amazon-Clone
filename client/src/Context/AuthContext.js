@@ -29,6 +29,9 @@ function AuthContext({ children }) {
         setToken();
         setClientData();
         localStorage.removeItem("token");
+        if (isLogin) {
+          setIsLogin(false); // if user put some random token local storage, that will be be handled by this condition
+        }
       }
       // console.log("clientData fetched");
     };

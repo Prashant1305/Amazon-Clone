@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
+import { MyLoginValues } from './AuthContext';
 
 function reducer(cartData, action) {
 
@@ -74,8 +75,20 @@ const cartWalaContext = createContext();
 
 function CartContext({ children }) {
     const [cartData, setCartData] = useReducer(reducer, []);
+    const [cartNumber, setCartNumber] = useState("Loding")
+    const { isLogin } = MyLoginValues();
+
+    useEffect(() => {
+        if (!isLogin) {
+            setCartNumber("plz_signin");
+        } else {
+            setCartNumber(`${cartData.length}`);
+        }
+
+    }, [cartData, isLogin]);
+
     return (
-        <cartWalaContext.Provider value={{ cartData, setCartData }}>{children}</cartWalaContext.Provider>
+        <cartWalaContext.Provider value={{ cartData, setCartData, cartNumber }}>{children}</cartWalaContext.Provider>
     )
 }
 

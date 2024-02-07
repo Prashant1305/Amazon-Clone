@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Navbar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
@@ -6,9 +6,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Avatar from '@mui/material/Avatar';
 import { NavLink } from 'react-router-dom';
 import { MyLoginValues } from '../../Context/AuthContext';
+import { CartValue } from '../../Context/CartContext';
 
 function Navbar() {
     const { isLogin } = MyLoginValues();
+    const { cartNumber } = CartValue()
     return (
         <header>
             <nav>
@@ -32,10 +34,10 @@ function Navbar() {
                     </div>
                     <NavLink to='./cart'>
                         <div className="cart_btn">
-                            <Badge badgeContent={4} color="primary">
+                            <Badge badgeContent={cartNumber} color="primary">
                                 <ShoppingCartIcon id="icon" />
                             </Badge>
-                            <p>Cart</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         </div>
                     </NavLink>
                     <NavLink to="/"><div className='avatar'><Avatar /></div></NavLink>
