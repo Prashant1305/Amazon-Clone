@@ -11,6 +11,12 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 
+  stock_quantity: {
+    type: Number,
+    required: false,
+    default: 1
+  },
+
   category: {
     type: String,
     required: true,
@@ -52,5 +58,5 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 });
-const product = new mongoose.model("product", productSchema);
-module.exports = product;
+const Product = new mongoose.model("product", productSchema);
+module.exports = Product;
