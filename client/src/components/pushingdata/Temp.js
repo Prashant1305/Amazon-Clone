@@ -16,6 +16,10 @@ function Temp() {
         }
         return ans;
     }
+    const getRandomStock = () => {
+        let randNumber = Math.floor(Math.random() * 6);
+        return randNumber;
+    }
 
     const cleanData = () => {
         data.map(async (item) => {
@@ -26,6 +30,7 @@ function Temp() {
                     const ob = {
                         id: item.product_id,
                         name: item.product_name,
+                        stock_quantity: getRandomStock(),
                         category: item.category,
                         actual_price: Number(cleanNumberString(item.actual_price)),
                         discounted_price: Number(cleanNumberString(item.discounted_price)),

@@ -1,4 +1,6 @@
 const User = require("../models/user-model");
+const Cart = require("../models/cart-model");
+const Product = require('../models/product-model');
 
 const home = async (req, res, next) => {
     res.status(200).json({ msg: "response from server" });
@@ -45,4 +47,44 @@ const getClientData = async (req, res, next) => {
     return res.status(200).json({ msg: req.clientAuthData });
 }
 
-module.exports = { home, register, login, getClientData };
+const postCartData = async (req, res, next) => {
+    try {
+        const email = req.clientAuthData.email;
+        const { items } = req.body;
+        const cartExist = await Cart.findOne({ email });
+        if (cartExist) {
+            await Cart.deleteOne({ email });
+        }
+        await Cart.create({ email, items });
+        return res.status(200).json({ msg: "cart updateed" });
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+const getCartData = async (req, res, next) => {
+    try {
+        const email = req.clientAuthData.email;
+        const cartMongoData = await Cart.findOne({ email });
+        if (!cartMongoData) {
+            res.status(202).json({ msg: "No Cart Data found" });
+        }
+        let data = [];
+        for (let i of cartMongoData.items) {
+            let detail = await Product.find({ _id: i.object_id }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
+            if (detail) {
+                let ans = detail[0];
+                let quantity = i.quantity;
+                // console.log(ans);
+                data.push({ ...ans._doc, quantity });
+            }
+        }
+        console.log("cart data sent");
+        res.status(200).json({ msg: data });
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { home, register, login, getClientData, postCartData, getCartData };

@@ -1,5 +1,4 @@
 const express = require('express');
-const Banner = require("../../models/banner-model");
 const { addBanner, deleteBanner } = require("../../controllers/admin-controller/admin-banner-controller");
 const validate = require("../../middleware/validate-middleware");
 const { bannerSchema } = require("../../validator/banner-validator");
