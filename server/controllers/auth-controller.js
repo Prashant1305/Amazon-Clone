@@ -76,7 +76,7 @@ const getCartData = async (req, res, next) => {
             if (detail) {
                 let ans = detail[0];
                 let quantity = i.quantity;
-                console.log(ans);
+                // console.log(ans);
                 data.push({ ...ans._doc, quantity });
             }
         }

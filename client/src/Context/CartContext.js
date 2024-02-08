@@ -17,7 +17,7 @@ function reducer(cartData, action) {
                     return item._id === action.productData._id;
                 })
                 if (addedItem) {
-                    temp.map((item) => {
+                    temp.forEach((item) => {
                         if (item._id === addedItem._id) {
                             item.quantity++;
                             alert(`${item.quantity} ${item.name.substr(0, 10)}... in cart`);
@@ -33,7 +33,7 @@ function reducer(cartData, action) {
         case "remove":
             const remove_id = action._id;
             let finalRemoveCart = [];
-            cartData.map((item) => {
+            cartData.forEach((item) => {
                 if (item._id !== remove_id) {
                     finalRemoveCart.push(item);
                 }
@@ -45,12 +45,16 @@ function reducer(cartData, action) {
             let finalDecreaseCart = [];
             cartData.map((item) => {
                 if (item._id === decrease_id) {
-                    if (item.quantity !== 1) {
-                        finalDecreaseCart.push({ ...item, ['quantity']: item.quantity - 1 });
+                    if (item.quantity > 1) {
+                        finalDecreaseCart.push({ ...item, 'quantity': item.quantity - 1 });
                         console.log(finalDecreaseCart);
                     }
                     // else when item quantity ==1 removed
+                } else {
+                    finalDecreaseCart.push({ ...item });
                 }
+
+                return 0;
             })
             return finalDecreaseCart;
 
@@ -59,7 +63,7 @@ function reducer(cartData, action) {
             let finalIncreaseCart = [];
             cartData.map((item) => {
                 if (item._id === addQuantity_id) {
-                    if (item.quantity === item.stock_quantity) {
+                    if (item.quantity >= item.stock_quantity) {
                         alert(`only ${item.stock_quantity} availble`);
                         finalIncreaseCart.push(item);
                     }
@@ -83,7 +87,7 @@ const cartWalaContext = createContext();
 function CartContext({ children }) {
     const [cartData, setCartData] = useReducer(reducer, []);
     const [cartNumber, setCartNumber] = useState("Loding")
-    const { isLogin, token, clientData } = MyLoginValues();
+    const { isLogin, token } = MyLoginValues();
     useEffect(() => {
         if (!isLogin) {
             setCartNumber("plz_signin");

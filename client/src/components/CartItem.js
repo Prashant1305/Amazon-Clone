@@ -7,7 +7,7 @@ import { CartValue } from '../Context/CartContext';
 
 function CartItem({ _id, url, name, discounted_price, quantity, stock_quantity }) {
     // console.log(props);
-    const { cartData, setCartData } = CartValue();
+    const { setCartData } = CartValue();
     return (
         <div className={styles.cartItem}>
             {/* left */}

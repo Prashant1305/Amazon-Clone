@@ -13,18 +13,18 @@ function Cart() {
 
     const calculateTotal = () => {
         let totalVal = 0;
-        cartData.map((item) => {
+        cartData.forEach((item) => {
             totalVal += item.discounted_price * item.quantity;
         })
         setTotal(totalVal);
     }
     useEffect(() => {
-
         if (isLogin === false) {
             navigate("/signin");
         }
         calculateTotal();
     }, [cartData]);
+
     if (cartData.length === 0) {
         return (<div className={styles.cart}>
             <h1 className={styles.cartHeading}>Cart Empty!</h1>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./Navbar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
