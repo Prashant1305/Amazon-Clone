@@ -4,8 +4,12 @@ import { getCartDataFromServer, postCartData } from '../utils/ApiUtils';
 
 
 function reducer(cartData, action) {
+    // console.log(action);
 
     switch (action.task) {
+        case "restoreCart":
+            return action.newCartData;
+
         case "addInCart": // also whole product data
             let temp = [...cartData];
             if (temp.length > 0) {
@@ -80,7 +84,33 @@ function CartContext({ children }) {
     const [cartData, setCartData] = useReducer(reducer, []);
     const [cartNumber, setCartNumber] = useState("Loding")
     const { isLogin, token, clientData } = MyLoginValues();
+    useEffect(() => {
+        if (!isLogin) {
+            setCartNumber("plz_signin");
+            setCartData({ task: "restoreCart", newCartData: [] });
 
+        } else {
+            let rawToken = localStorage.getItem("token");
+            let len = (rawToken.length) - 2;
+            let new_token = rawToken.substr(1, len);
+
+            setCartNumber("Loading...");
+            getCartDataFromServer(new_token)
+                .then((res) => {
+                    if (res.status === 200) {
+                        setCartData({ task: "restoreCart", newCartData: res.data.msg });
+                    }
+                    else if (res.status === 202) {
+                        alert(res.data.msg);
+                    }
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            setCartNumber(`${cartData.length}`);
+        }
+    }, [isLogin]);
 
     const updateCartDataToServer = () => {
         if (cartData.length > 0) {
@@ -106,24 +136,8 @@ function CartContext({ children }) {
         setCartNumber(`${cartData.length}`);
     }, [cartData]);
 
-    useEffect(() => {
-        if (!isLogin) {
-            setCartNumber("plz_signin");
-        } else {
-            setCartNumber("Loading...");
-            getCartDataFromServer(token)
-                .then((res) => {
-                    setCartData(res);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            setCartNumber(`${cartData.length}`);
-        }
-    }, [isLogin]);
-
     return (
-        <cartWalaContext.Provider value={{ cartData, setCartData, cartNumber }}>{children}</cartWalaContext.Provider>
+        <cartWalaContext.Provider value={{ cartData, setCartData, cartNumber, setCartNumber }}>{children}</cartWalaContext.Provider>
     )
 }
 

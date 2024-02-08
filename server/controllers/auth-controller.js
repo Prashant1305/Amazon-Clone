@@ -74,7 +74,10 @@ const getCartData = async (req, res, next) => {
         for (let i of cartMongoData.items) {
             let detail = await Product.find({ _id: i.object_id }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
             if (detail) {
-                data.push(detail[0]);
+                let ans = detail[0];
+                let quantity = i.quantity;
+                console.log(ans);
+                data.push({ ...ans._doc, quantity });
             }
         }
         console.log("cart data sent");
