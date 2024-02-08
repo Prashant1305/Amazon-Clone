@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import { MyLoginValues } from './AuthContext';
+import { getCartDataFromServer, postCartData } from '../utils/ApiUtils';
+
 
 function reducer(cartData, action) {
 
@@ -33,6 +35,7 @@ function reducer(cartData, action) {
                 }
             })
             return finalRemoveCart;
+
         case "decreaseQuantity":
             const decrease_id = action._id;
             let finalDecreaseCart = [];
@@ -46,6 +49,7 @@ function reducer(cartData, action) {
                 }
             })
             return finalDecreaseCart;
+
         case "addQuantity":
             const addQuantity_id = action._id;
             let finalIncreaseCart = [];
@@ -60,7 +64,6 @@ function reducer(cartData, action) {
                     }
                 }
                 else {
-
                     finalIncreaseCart.push(item);
                 }
             })
@@ -76,16 +79,48 @@ const cartWalaContext = createContext();
 function CartContext({ children }) {
     const [cartData, setCartData] = useReducer(reducer, []);
     const [cartNumber, setCartNumber] = useState("Loding")
-    const { isLogin } = MyLoginValues();
+    const { isLogin, token, clientData } = MyLoginValues();
+
+
+    const updateCartDataToServer = () => {
+        if (cartData.length > 0) {
+            const items = [];
+            for (let i of cartData) {
+                items.push({ "object_id": i._id, "quantity": i.quantity });
+            }
+            // console.log(items);
+            postCartData({ items }, token)
+                .then((res) => {
+                    if (res.status === 200) {
+                        alert("cart data posted");
+                    }
+                })
+                .catch((error) => {
+                    alert("failed to upload");
+                    console.log("error from updateCartDataToServer", error);
+                })
+        }
+    }
+    useEffect(() => {
+        updateCartDataToServer();
+        setCartNumber(`${cartData.length}`);
+    }, [cartData]);
 
     useEffect(() => {
         if (!isLogin) {
             setCartNumber("plz_signin");
         } else {
+            setCartNumber("Loading...");
+            getCartDataFromServer(token)
+                .then((res) => {
+                    setCartData(res);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
             setCartNumber(`${cartData.length}`);
         }
-
-    }, [cartData, isLogin]);
+    }, [isLogin]);
 
     return (
         <cartWalaContext.Provider value={{ cartData, setCartData, cartNumber }}>{children}</cartWalaContext.Provider>

@@ -50,12 +50,12 @@ const getClientData = async (req, res, next) => {
 const postCartData = async (req, res, next) => {
     try {
         const email = req.clientAuthData.email;
-        const { object_ids } = req.body;
+        const { items } = req.body;
         const cartExist = await Cart.findOne({ email });
         if (cartExist) {
             await Cart.deleteOne({ email });
         }
-        await Cart.create({ email, object_ids });
+        await Cart.create({ email, items });
         return res.status(200).json({ msg: "cart updateed" });
 
     } catch (error) {
@@ -71,9 +71,11 @@ const getCartData = async (req, res, next) => {
             res.status(202).json({ msg: "No Cart Data found" });
         }
         let data = [];
-        for (let i of cartMongoData.object_ids) {
-            let detail = await Product.find({ _id: i }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
-            data.push(detail[0]);
+        for (let i of cartMongoData.items) {
+            let detail = await Product.find({ _id: i.object_id }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
+            if (detail) {
+                data.push(detail[0]);
+            }
         }
         console.log("cart data sent");
         res.status(200).json({ msg: data });

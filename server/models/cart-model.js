@@ -5,7 +5,7 @@ const cartSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    object_ids: [String],
+    items: [{ object_id: String, quantity: Number }],
 });
 const cart = new mongoose.model("cart", cartSchema);
 module.exports = cart;

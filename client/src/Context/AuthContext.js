@@ -19,7 +19,7 @@ function AuthContext({ children }) {
         setToken(temp);
         getAllClientData(temp)
           .then((res) => {
-            console.log(res.data.msg);
+            // console.log(res.data.msg);
             setClientData(res.data.msg);
           })
           .catch((error) => {
