@@ -4,7 +4,7 @@ header {
     height: 60px;
     position: fixed;
     top: 0;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
 }
 
@@ -15,7 +15,7 @@ header nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: 4;
+    z-index: 1;
 }
 
 header nav .navlogo img {
@@ -46,7 +46,7 @@ header nav .left input {
 
 header nav .left .search_icon {
     background-color: #febd69;
-    height: 40px;
+    height: 38px;
     width: 40px;
     display: flex;
     justify-content: center;
@@ -62,8 +62,9 @@ header nav .nav_searchbaar {
     align-items: center;
 }
 
-/* header nav .left input:focus{
-    border: 2px solid #febd69;
+
+/* header nav .left input:focus {
+    border: 2px solid #08f5a6;
 } */
 
 header nav .right {
@@ -86,9 +87,16 @@ header nav .right .nav_btn a {
 
 
 
-header nav .right .nav_btn a:hover {
-    border: 1px solid white;
+header nav a:hover {
+    /* border: 1px solid white; */
+    /* font-size: larger; */
+    zoom: 1.1;
+
 }
+
+/* header nav .right .avtar:hover {
+    zoom: 1.1;
+} */
 
 header nav .right .cart_btn {
     display: flex;
@@ -104,7 +112,8 @@ header nav .right .cart_btn {
 }
 
 header nav .right .cart_btn:hover {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    zoom: 1.1;
 }
 
 header nav .right .cart_btn #icon {
