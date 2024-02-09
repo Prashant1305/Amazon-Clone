@@ -69,19 +69,21 @@ const getCartData = async (req, res, next) => {
         const cartMongoData = await Cart.findOne({ email });
         if (!cartMongoData) {
             res.status(202).json({ msg: "No Cart Data found" });
-        }
-        let data = [];
-        for (let i of cartMongoData.items) {
-            let detail = await Product.find({ _id: i.object_id }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
-            if (detail) {
-                let ans = detail[0];
-                let quantity = i.quantity;
-                // console.log(ans);
-                data.push({ ...ans._doc, quantity });
+        } else {
+            let data = [];
+            for (let i of cartMongoData.items) {
+                let detail = await Product.find({ _id: i.object_id }).select({ _id: 1, url: 1, name: 1, discounted_price: 1, stock_quantity: 1 });
+                if (detail) {
+                    let ans = detail[0];
+                    let quantity = i.quantity;
+                    // console.log(ans);
+                    data.push({ ...ans._doc, quantity });
+                }
             }
+            console.log("cart data sent");
+            res.status(200).json({ msg: data });
         }
-        console.log("cart data sent");
-        res.status(200).json({ msg: data });
+
     } catch (error) {
         next(error);
     }

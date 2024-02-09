@@ -77,10 +77,9 @@ function reducer(cartData, action) {
             })
             return finalIncreaseCart;
 
+        default: console.log("case with no matching task");
+            return cartData;
     }
-    console.log("case with no matching task");
-    return cartData;
-
 }
 const cartWalaContext = createContext();
 
@@ -137,7 +136,9 @@ function CartContext({ children }) {
     }
     useEffect(() => {
         updateCartDataToServer();
-        setCartNumber(`${cartData.length}`);
+        if (isLogin) {
+            setCartNumber(`${cartData.length}`);
+        }
     }, [cartData]);
 
     return (
