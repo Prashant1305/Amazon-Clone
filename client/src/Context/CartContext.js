@@ -12,17 +12,27 @@ function reducer(cartData, action) {
 
         case "addInCart": // also whole product data
             let temp = [...cartData];
+            if (action.productData.stock_quantity === 0) {
+                alert("Item out stock");
+                return temp;
+            }
             if (temp.length > 0) {
                 const addedItem = temp.find((item) => {
                     return item._id === action.productData._id;
                 })
+                // console.log(addedItem)
                 if (addedItem) {
-                    temp.forEach((item) => {
-                        if (item._id === addedItem._id) {
-                            item.quantity++;
-                            alert(`${item.quantity} ${item.name.substr(0, 10)}... in cart`);
-                        }
-                    })
+                    if (addedItem.quantity === addedItem.stock_quantity) {
+                        alert("you have reached stock limit");
+                    }
+                    else {
+                        temp.forEach((item) => {
+                            if (item._id === addedItem._id) {
+                                item.quantity++;
+                                alert(`${item.quantity} ${item.name.substr(0, 10)}... in cart`);
+                            }
+                        })
+                    }
                     return temp;
                 }
             }
@@ -38,6 +48,7 @@ function reducer(cartData, action) {
                     finalRemoveCart.push(item);
                 }
             })
+            // console.log(finalRemoveCart)
             return finalRemoveCart;
 
         case "decreaseQuantity":
@@ -116,12 +127,12 @@ function CartContext({ children }) {
     }, [isLogin]);
 
     const updateCartDataToServer = () => {
-        if (cartData.length > 0) {
-            const items = [];
-            for (let i of cartData) {
-                items.push({ "object_id": i._id, "quantity": i.quantity });
-            }
-            // console.log(items);
+        // if (cartData.length > 0) {
+        const items = [];
+        for (let i of cartData) {
+            items.push({ "object_id": i._id, "quantity": i.quantity });
+        }
+        if (token) {
             postCartData({ items }, token)
                 .then((res) => {
                     if (res.status === 200) {

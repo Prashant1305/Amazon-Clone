@@ -56,6 +56,7 @@ const postCartData = async (req, res, next) => {
             await Cart.deleteOne({ email });
         }
         await Cart.create({ email, items });
+        console.log("cart Data poasted to mongoDb");
         return res.status(200).json({ msg: "cart updateed" });
 
     } catch (error) {
