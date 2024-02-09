@@ -58,7 +58,6 @@ function reducer(cartData, action) {
                 if (item._id === decrease_id) {
                     if (item.quantity > 1) {
                         finalDecreaseCart.push({ ...item, 'quantity': item.quantity - 1 });
-                        console.log(finalDecreaseCart);
                     }
                     // else when item quantity ==1 removed
                 } else {
