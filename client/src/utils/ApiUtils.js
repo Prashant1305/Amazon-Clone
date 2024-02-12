@@ -55,25 +55,25 @@ export const topTwentyRatedProducts = () => {
 export const singleProductDetails = ({ id }) => {
   const url = `${baseUrl}/api/product/getsingleproductdetails/${id}`;
   return axios.get(url);
-}
+};
 
 export const postCartData = (data, token) => {
   const url = `${baseUrl}/api/auth/postcartdata`;
   const response = axios.post(url, data, {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
   });
   return response;
-}
+};
 
 export const getCartDataFromServer = (token) => {
   const url = `${baseUrl}/api/auth/getcartdata`;
   const response = axios.get(url, {
     headers: {
-      "Authorization": `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
   });
   return response;
-}
+};
