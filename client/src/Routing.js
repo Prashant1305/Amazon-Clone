@@ -15,6 +15,7 @@ import Error from "./pages/Error";
 import HomePageContext from "./Context/HomePageContext";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import ProductTest from "./components/Product/ProductTest";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminNavbar from "./pages/admin/AdminNavbar";
 import AddProduct from "./pages/admin/AddProduct";
@@ -22,7 +23,7 @@ import AddProduct from "./pages/admin/AddProduct";
 function Routing() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" /* element={<RootLayout />} */ errorElement={<Error />}>
+      <Route path="/" element={<RootLayout />} errorElement={<Error />}>
         <Route
           index
           element={
@@ -36,12 +37,12 @@ function Routing() {
         <Route path="signout" element={<SignOut />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="productTest" element={<ProductTest />} />
 
-        <Route path="admin" element={<AdminLayout />}>
-          <Route index element={<AdminNavbar />}></Route>
-          <Route path="addproduct" element={<AddProduct />}></Route>
+        <Route path="Admin" element={<AdminLayout />}>
+          <Route index element={<AdminNavbar />} />
+          <Route path="addproduct" element={<AddProduct />} />
         </Route>
-
         <Route path="*" element={<ErrorRoute />} />
       </Route>
     )

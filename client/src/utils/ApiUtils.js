@@ -39,6 +39,15 @@ export const getAllClientData = (token) => {
   });
   return response;
 };
+export const getProductsByCategory = (category) => {
+  const url = `${baseUrl}/api/product/getProductsByCategory/${category}`;
+  const response = axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response;
+};
 
 export const topTendiscountedProducts = () => {
   const url = `${baseUrl}/api/product/toptendiscountedProducts`;
