@@ -1,14 +1,21 @@
 import React from 'react';
 import "./NewNav.css";
+import { Button } from '@mui/material';
+import {  useNavigate } from 'react-router-dom';
 
 function NewNav() {
+    const Navigate = useNavigate();
+    const handleClick = async (category) => {
+        Navigate(`productCategory/${category}`, { replace: false });
+      };
+    
     return (
         <div className="new_nav">
             <div className="nav_data">
                 <div className="left_data">
                     <p>All</p>
-                    <p>Mobile</p>
-                    <p>BestSeller</p>
+                    <Button onClick={()=>handleClick("mobile")}><p>Mobile</p></Button>
+                    <p>Bestseller</p>
                     <p>Fashion</p>
                     <p>Electronics</p>
                     <p>Prime</p>
