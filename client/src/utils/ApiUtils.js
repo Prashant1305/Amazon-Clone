@@ -86,3 +86,14 @@ export const getCartDataFromServer = (token) => {
   });
   return response;
 };
+
+export const getSearchResult = async (data) => {
+  const url = `${baseUrl}/api/product/search`;
+  console.log(data);
+  const response = axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response;
+}

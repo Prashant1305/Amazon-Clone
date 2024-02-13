@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 import SignOut from "./pages/SignOut";
 import Error from "./pages/Error";
 import HomePageContext from "./Context/HomePageContext";
-import Product from "./pages/Product";
+import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
 import ProductTest from "./components/Product/ProductTest";
 
@@ -32,7 +32,7 @@ function Routing() {
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signout" element={<SignOut />} />
-        <Route path="product/:id" element={<Product />} />
+        <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
         <Route path="productCategory/:category" element={<ProductTest />} />
         <Route path="productTest" element={<ProductTest />} />
