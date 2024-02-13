@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Navbar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
@@ -7,10 +7,23 @@ import Avatar from '@mui/material/Avatar';
 import { NavLink } from 'react-router-dom';
 import { MyLoginValues } from '../../Context/AuthContext';
 import { CartValue } from '../../Context/CartContext';
+import { getSearchResult } from '../../utils/ApiUtils';
 
 function Navbar() {
     const { isLogin } = MyLoginValues();
     const { cartNumber } = CartValue()
+    const [searchInput, setSearchInput] = useState("");
+    const fetchSearchResult = async (e) => {
+        try {
+            const res = await getSearchResult({ "input": searchInput });
+            console.log(res);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const handlechange = (e) => {
+        setSearchInput(e.target.value);
+    }
     return (
         <header>
             <nav>
@@ -19,9 +32,13 @@ function Navbar() {
                         <NavLink to='/'><img src="../amazon_PNG25.png" alt="failed to load" /></NavLink>
                     </div>
                     <div className='nav_searchbaar'>
-                        <input type="text" name="" id="" />
+                        <input type="text" name="searchInput" id="searchInput" onChange={(e) => {
+                            handlechange(e)
+                        }} value={searchInput} />
                         <div className='search_icon'>
-                            <SearchIcon id="search" />
+                            <SearchIcon id="search" onClick={(e) => {
+                                fetchSearchResult(e);
+                            }} />
                         </div>
                     </div>
                 </div>
