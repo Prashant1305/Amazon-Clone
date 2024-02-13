@@ -34,6 +34,7 @@ function Routing() {
         <Route path="signout" element={<SignOut />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="productCategory/:category" element={<ProductTest />} />
         <Route path="productTest" element={<ProductTest />} />
         <Route path="*" element={<ErrorRoute />} />
       </Route>
