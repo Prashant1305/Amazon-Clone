@@ -4,19 +4,26 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Avatar from '@mui/material/Avatar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { MyLoginValues } from '../../Context/AuthContext';
 import { CartValue } from '../../Context/CartContext';
 import { getSearchResult } from '../../utils/ApiUtils';
+import { MyProduct } from '../../Context/ProductItemContext';
 
 function Navbar() {
     const { isLogin } = MyLoginValues();
     const { cartNumber } = CartValue()
     const [searchInput, setSearchInput] = useState("");
+    const { setDetailsData } = MyProduct();
+    const navigate = useNavigate();
+
     const fetchSearchResult = async (e) => {
         try {
+            setDetailsData();
             const res = await getSearchResult({ "input": searchInput });
-            console.log(res);
+            // console.log(res);
+            setDetailsData(res.data.msg);
+            navigate('./productpage');
         } catch (error) {
             console.log(error)
         }

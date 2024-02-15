@@ -15,7 +15,7 @@ import Error from "./pages/Error";
 import HomePageContext from "./Context/HomePageContext";
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
-import ProductTest from "./components/Product/ProductTest";
+import ProductItems from "./pages/ProductItems";
 
 function Routing() {
   const router = createBrowserRouter(
@@ -34,8 +34,7 @@ function Routing() {
         <Route path="signout" element={<SignOut />} />
         <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="productCategory/:category" element={<ProductTest />} />
-        <Route path="productTest" element={<ProductTest />} />
+        <Route path="productpage" element={<ProductItems />} />
         <Route path="*" element={<ErrorRoute />} />
       </Route>
     )
