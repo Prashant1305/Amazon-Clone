@@ -1,0 +1,7 @@
+.navbar navbar-expand-lg navbar-dark bg-dark {
+    width: 100%;
+    height: 40px;
+    background-color: #27273d;
+    position: relative;
+    top: 160px;
+}

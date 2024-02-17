@@ -1,15 +1,16 @@
 #item_section {
     /* border: 2px solid green; */
     margin: 10px;
-    height: 25vh;
+    min-height: 25vh;
     width: 95vw;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #cdcdcd;
 }
 
 #item_section #item_image {
-    height: 100%;
-    width: 25vh;
+    /* height: 100%; */
+    width: 15vw;
     mix-blend-mode: darken;
     /* border: 2px solid cyan; */
 }
@@ -24,7 +25,7 @@
     height: 100%;
     /* border: 2px solid fuchsia; */
     margin: 10px;
-    width: 75%;
+    width: 75vw;
 }
 
 #item_name_section {
@@ -65,7 +66,7 @@
     background: #f3d078;
     cursor: pointer;
     /* border: 1px solid #9c7e31; */
-    height: 29px;
+    min-height: 29px;
     outline: none;
     border-radius: 3px;
     color: #111;
