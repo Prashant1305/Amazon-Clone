@@ -16,6 +16,10 @@ import HomePageContext from "./Context/HomePageContext";
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
 import ProductItems from "./pages/ProductItems";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminHome from "./pages/admin/AdminHome";
+import AddProduct from "./pages/admin/AddProduct";
+import DeleteProduct from "./pages/admin/DeleteProduct";
 
 function Routing() {
   const router = createBrowserRouter(
@@ -35,6 +39,12 @@ function Routing() {
         <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
         <Route path="productpage" element={<ProductItems />} />
+
+        <Route path="Admin" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="deleteproduct" element={<DeleteProduct />} />
+        </Route>
         <Route path="*" element={<ErrorRoute />} />
       </Route>
     )
