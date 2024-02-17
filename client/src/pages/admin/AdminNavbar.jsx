@@ -25,7 +25,11 @@ const AdminNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarsExample07">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a
+                className="nav-link active"
+                aria-current="page"
+                href="/admin/addproduct"
+              >
                 AddProduct
               </a>
             </li>

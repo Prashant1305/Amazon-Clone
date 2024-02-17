@@ -86,3 +86,37 @@ export const getCartDataFromServer = (token) => {
   });
   return response;
 };
+
+export const allproduct = (data) => {
+  const url = `${baseUrl}/api/admin/product/all`;
+  const response = axios.get(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response;
+};
+
+export const addproduct = (data, token) => {
+  const url = `${baseUrl}/api/admin/product/addproduct`;
+  const response = axios.post(url, data, {
+    headers: {
+      "content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log("ye hai respond axios", response);
+
+  return response;
+};
+
+export const deleteproduct = (id, token) => {
+  const url = `${baseUrl}/api/admin/product/delete/${id}`;
+  console.log("url shi hai");
+  const response = axios.delete(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
+};

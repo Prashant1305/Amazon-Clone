@@ -1,57 +1,104 @@
 import React, { useState } from "react";
-import "./Admincss/product.css";
+// import "./Admincss/product.css";
+import { addproduct } from "../../utils/ApiUtils";
+import { MyLoginValues } from "../../Context/AuthContext";
 
 const AddProduct = () => {
   const [ProductData, setProductData] = useState({
-    Productname: "",
-    stockquan: "",
-    Category: "",
-    Actual_price: "",
-    Discounted_price: "",
-    Discounted_percentage: "",
-    About: "",
-    Url: "",
-    Rating: "",
-    Rating_count: "",
+    id: "",
+    name: "",
+    stock_quantity: "",
+    category: "",
+    actual_price: "",
+    discounted_price: "",
+    discount_percentage: "",
+    about: "",
+    url: "", // Corrected: changed from "Url" to "url"
+    rating: "",
+    rating_count: "",
   });
+  const { token } = MyLoginValues();
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("ye to work kr raha hai");
+      const numericProductData = {
+        ...ProductData,
+        stock_quantity: parseInt(ProductData.stock_quantity),
+        actual_price: parseFloat(ProductData.actual_price),
+        discounted_price: parseFloat(ProductData.discounted_price),
+        discount_percentage: parseInt(ProductData.discount_percentage),
+        rating: parseFloat(ProductData.rating),
+        rating_count: parseInt(ProductData.rating_count),
+      };
+      console.log(numericProductData);
+      await addproduct(numericProductData, token);
+      alert("Product added successfully!");
+      setProductData({
+        id: "",
+        name: "",
+        stock_quantity: 0,
+        category: "",
+        actual_price: 0,
+        discounted_price: 0,
+        discount_percentage: 0,
+        about: "",
+        url: "", // Corrected: changed from "Url" to "url"
+        rating: 0,
+        rating_count: 0,
+      });
+    } catch (error) {
+      console.error("Error adding product:", error);
+      alert("Failed to add product. Please try again later.");
+    }
+  };
 
   const handlechange = (e) => {
-    setProductData({ ...ProductData, [e.target.id]: e.target.value });
+    console.log("handle change kr rha work");
+    setProductData({ ...ProductData, [e.target.name]: e.target.value });
   };
-  console.log({ ...ProductData });
+
   return (
     <div>
       <section>
         <div className="product_container">
           <div className="product_header">
-            <h1>Product Deatils</h1>
+            <h1>Product Details</h1>
           </div>
           <div className="details_form">
-            <form>
+            <form onSubmit={handlesubmit}>
               <div className="form_data">
-                <label htmlFor="ProductName">Product Name</label>
+                <label htmlFor="id">Product ID</label>
                 <input
                   type="text"
-                  name="productname"
-                  id="productname"
-                  placeholder="Product Name"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.productname}
+                  name="id"
+                  id="id"
+                  placeholder="Enter Product ID"
+                  onChange={handlechange}
+                  value={ProductData.id}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="stock_qua">Stock Quantity</label>
+                <label htmlFor="name">Product Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Product Name"
+                  onChange={handlechange}
+                  value={ProductData.name}
+                />
+              </div>
+              <div className="form_data">
+                <label htmlFor="stock_quantity">Stock Quantity</label>
                 <input
                   type="number"
-                  name="quantity"
-                  id="quantity"
+                  name="stock_quantity"
+                  id="stock_quantity"
                   placeholder="Enter stock quantity"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.quantity}
+                  onChange={handlechange}
+                  value={ProductData.stock_quantity}
                 />
               </div>
               <div className="form_data">
@@ -61,9 +108,7 @@ const AddProduct = () => {
                   name="category"
                   id="category"
                   placeholder="Enter category"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
+                  onChange={handlechange}
                   value={ProductData.category}
                 />
               </div>
@@ -74,94 +119,80 @@ const AddProduct = () => {
                   name="actual_price"
                   id="actual_price"
                   placeholder="Enter Actual Price"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
+                  onChange={handlechange}
                   value={ProductData.actual_price}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="discouted_price">Dicounted Price</label>
+                <label htmlFor="discounted_price">Discounted Price</label>
                 <input
                   type="number"
-                  name="dicounted_price"
-                  id="dicounted_price"
+                  name="discounted_price"
+                  id="discounted_price"
                   placeholder="Enter Discounted Price"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.dicounted_price}
+                  onChange={handlechange}
+                  value={ProductData.discounted_price}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="discounted_percentage">
-                  Discounted Percentage
-                </label>
+                <label htmlFor="discount_percentage">Discount Percentage</label>
                 <input
                   type="number"
-                  name="discounted_percentage"
-                  id="discounted_percentage"
+                  name="discount_percentage"
+                  id="discount_percentage"
                   placeholder="Enter Discounted percentage"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.discounted_percentage}
+                  onChange={handlechange}
+                  value={ProductData.discount_percentage}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="About">About</label>
+                <label htmlFor="about">About</label>
                 <input
                   type="text"
-                  name="About"
-                  id="About"
+                  name="about"
+                  id="about"
                   placeholder="Enter product Description"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.About}
+                  onChange={handlechange}
+                  value={ProductData.about}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="Url">Product URL</label>
+                <label htmlFor="url">Product URL</label>
                 <input
                   type="text"
-                  name="Url"
-                  id="Url"
+                  name="url"
+                  id="url"
                   placeholder="Enter product URL"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.Url}
+                  onChange={handlechange}
+                  value={ProductData.url}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="Rating">Product Rating</label>
+                <label htmlFor="rating">Product Rating</label>
                 <input
                   type="number"
-                  name="Rating"
-                  id="Rating"
+                  name="rating"
+                  id="rating"
                   placeholder="Enter product Rating"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.Rating}
+                  onChange={handlechange}
+                  value={ProductData.rating}
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="Rating_count">Rating count</label>
+                <label htmlFor="rating_count">Rating count</label>
                 <input
                   type="number"
-                  name="Rating_count"
-                  id="Rating_count"
+                  name="rating_count"
+                  id="rating_count"
                   placeholder="Enter Rating of product"
-                  onChange={(e) => {
-                    handlechange(e);
-                  }}
-                  value={ProductData.Rating_count}
+                  onChange={handlechange}
+                  value={ProductData.rating_count}
                 />
               </div>
               <div className="form_data">
-                <input type="submit" value="Submit" />
+                <button className="btn" type="submit">
+                  Submit
+                </button>
               </div>
             </form>
           </div>

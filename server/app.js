@@ -26,10 +26,8 @@ app.use("/api/product", productRoute);
 app.use("/api/admin/product", adminProductRoutes);
 app.use("/api/admin/banner", adminBannerRoutes);
 
-
-
 app.use(errorMiddleware);
-const port = process.env.PORT || 5000;;
+const port = process.env.PORT || 5000;
 connectDb().then(() => {
   app.listen(port, () => {
     console.log(`server is running on port number ${port}`);
