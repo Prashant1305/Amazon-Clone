@@ -28,7 +28,9 @@ const productSchema = z.object({
 
   discount_percentage: z
     .number({ required_error: "discount_percentage is required" })
-    .nonnegative({ message: "discount_percentage must be greater than equal to 0" }),
+    .nonnegative({
+      message: "discount_percentage must be greater than equal to 0",
+    }),
 
   about: z
     .string({ required_error: "about is required" })
@@ -44,11 +46,11 @@ const productSchema = z.object({
     .gte(0, { message: "rating must be greater than 0" })
     .lte(5.1, { message: "rating must be less than 5.1" }),
 
-
   rating_count: z
     .number({ required_error: "rating count is required" })
     .int({ message: "rating count must be an integer" }) // value must be an integer
-    .nonnegative({ message: "rating Count must be greater than equal to 0" })
+    .nonnegative({ message: "rating Count must be greater than equal to 0" }),
 });
+console.log("middleware kaam kr rha hai ");
 
 module.exports = { productSchema };
