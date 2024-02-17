@@ -87,21 +87,24 @@ export const getCartDataFromServer = (token) => {
   return response;
 };
 
-<<<<<<< HEAD
-export const allproduct = (data) => {
-  const url = `${baseUrl}/api/admin/product/all`;
-  const response = axios.get(url, data, {
-=======
 export const getSearchResult = async (data) => {
   const url = `${baseUrl}/api/product/search`;
   const response = axios.post(url, data, {
->>>>>>> 79be36fbe91ec41c064f1f1c3dee55a3681d0cbc
     headers: {
       "Content-Type": "application/json",
     },
   });
   return response;
-<<<<<<< HEAD
+};
+
+export const allproduct = (data) => {
+  const url = `${baseUrl}/api/admin/product/all`;
+  const response = axios.get(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response;
 };
 
 export const addproduct = (data, token) => {
@@ -127,6 +130,3 @@ export const deleteproduct = (id, token) => {
   });
   return response;
 };
-=======
-}
->>>>>>> 79be36fbe91ec41c064f1f1c3dee55a3681d0cbc

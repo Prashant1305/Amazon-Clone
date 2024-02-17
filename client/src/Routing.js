@@ -15,15 +15,11 @@ import Error from "./pages/Error";
 import HomePageContext from "./Context/HomePageContext";
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
-<<<<<<< HEAD
-import ProductTest from "./components/Product/ProductTest";
+import ProductItems from "./pages/ProductItems";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
-=======
-import ProductItems from "./pages/ProductItems";
->>>>>>> 79be36fbe91ec41c064f1f1c3dee55a3681d0cbc
 
 function Routing() {
   const router = createBrowserRouter(
@@ -42,17 +38,13 @@ function Routing() {
         <Route path="signout" element={<SignOut />} />
         <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
-<<<<<<< HEAD
-        <Route path="productTest" element={<ProductTest />} />
+        <Route path="productpage" element={<ProductItems />} />
 
         <Route path="Admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="deleteproduct" element={<DeleteProduct />} />
         </Route>
-=======
-        <Route path="productpage" element={<ProductItems />} />
->>>>>>> 79be36fbe91ec41c064f1f1c3dee55a3681d0cbc
         <Route path="*" element={<ErrorRoute />} />
       </Route>
     )
