@@ -1,0 +1,73 @@
+#item_section {
+    /* border: 2px solid green; */
+    margin: 10px;
+    height: 25vh;
+    width: 95vw;
+    display: flex;
+    align-items: center;
+}
+
+#item_section #item_image {
+    height: 100%;
+    width: 25vh;
+    mix-blend-mode: darken;
+    /* border: 2px solid cyan; */
+}
+
+.image_tag {
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid black; */
+}
+
+#middle_section {
+    height: 100%;
+    /* border: 2px solid fuchsia; */
+    margin: 10px;
+    width: 75%;
+}
+
+#item_name_section {
+    /* border: 2px solid orange; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    margin: 10px 0px 10px 0px;
+}
+
+#item_price_value_section {
+    /* border: 2px solid aqua; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+}
+
+#feild_of_discount {
+    font-size: smaller;
+    /* border: 2px solid black; */
+    position: relative;
+    top: -10px;
+}
+
+#feild_of_mrp {
+    font-size: smaller;
+    /* border: 2px solid red; */
+}
+
+#strike_section {
+    text-decoration: line-through;
+}
+
+.product_right_section_btn {
+    margin-top: 7px;
+    margin-bottom: 23px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    background: #f3d078;
+    cursor: pointer;
+    /* border: 1px solid #9c7e31; */
+    height: 29px;
+    outline: none;
+    border-radius: 3px;
+    color: #111;
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b)
+}

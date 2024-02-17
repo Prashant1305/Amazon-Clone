@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Admincss/product.css";
+// import "./Admincss/product.css";
 
 const AddProduct = () => {
   const [ProductData, setProductData] = useState({

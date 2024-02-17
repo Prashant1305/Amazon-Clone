@@ -57,9 +57,31 @@ const getProductsByCategory = async (req, res, next) => {
   }
 };
 
+const searchProducts = async (req, res, next) => {
+  try {
+    const { input } = req.body;
+    console.log(req.body);
+    const response = await Product.find();
+    const temp = [];
+    for (let i of response) {
+      let searchString = "";
+      searchString += i.id + " " + i.name + " " + i.category + " " + i.about;
+      if (searchString.includes(input)) {
+        temp.push(i);
+      }
+    }
+    console.log("search response sent");
+    res.status(200).json({ msg: temp });
+  } catch (error) {
+    next(error);
+  }
+
+}
+
 module.exports = {
   topTendiscountedProducts,
   topTwentyRatedProducts,
   getSingleProductDetails,
   getProductsByCategory,
+  searchProducts
 };
