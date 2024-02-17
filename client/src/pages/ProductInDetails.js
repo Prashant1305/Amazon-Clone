@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { singleProductDetails } from "../utils/ApiUtils";
 import { Divider } from "@mui/material";
-import "./Product.css";
+import "./ProductInDetails.css";
 import { CartValue } from "../Context/CartContext";
 
-function Product() {
+function ProductInDetails() {
     const { setCartData } = CartValue();
     const _id = useParams();
     const [productData, setProductData] = useState();
@@ -102,4 +102,4 @@ function Product() {
     );
 }
 
-export default Product;
+export default ProductInDetails;
