@@ -16,7 +16,7 @@ import HomePageContext from "./Context/HomePageContext";
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
 import ProductItems from "./pages/ProductItems";
-import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLayout from "./components/adminComponents/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
