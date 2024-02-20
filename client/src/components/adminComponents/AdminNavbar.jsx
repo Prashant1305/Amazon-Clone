@@ -1,45 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
+import { NavLink, useNavigate, Link } from 'react-router-dom';
+import "./AdminNavbar.css";
 
 const AdminNavbar = () => {
-  return (
-    <nav
-      className="navbar navbar-expand-lg navbar-dark bg-dark"
-      aria-label="Eighth navbar example"
-    >
-      <div className="container">
-        <a className="navbar-brand" href="/">
-          Home
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample07"
-          aria-controls="navbarsExample07"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+  const navigate = useNavigate();
+  const myElementRef = useRef(null);
 
-        <div className="collapse navbar-collapse" id="navbarsExample07">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="/admin/addproduct"
-              >
-                AddProduct
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                DeleteProduct
-              </a>
-            </li>
-          </ul>
-        </div>
+  return (
+    <nav class="admin_navbar">
+      <Link to="#" class="toggle-button" onClick={() => {
+        const myElement = myElementRef.current;
+        myElement.classList.toggle('active')
+      }}>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </Link>
+      <div class="admin_navbar-links" ref={myElementRef}>
+        <ul>
+          <li><NavLink to="/admin">Home</NavLink></li>
+          <li><NavLink to="/clients">Clients</NavLink></li>
+          <li><NavLink to="/addproduct">Products</NavLink></li>
+        </ul>
       </div>
     </nav>
   );

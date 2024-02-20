@@ -1,7 +1,7 @@
 import React from "react";
 
 function AdminHome() {
-  return <div>Danger Zone</div>;
+  return <div id="admin_Home">Danger Zone</div>;
 }
 
 export default AdminHome;

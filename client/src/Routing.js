@@ -40,7 +40,7 @@ function Routing() {
         <Route path="cart" element={<Cart />} />
         <Route path="productpage" element={<ProductItems />} />
 
-        <Route path="Admin" element={<AdminLayout />}>
+        <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="deleteproduct" element={<DeleteProduct />} />
