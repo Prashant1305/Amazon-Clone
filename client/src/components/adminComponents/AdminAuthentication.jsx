@@ -9,7 +9,7 @@ function AdminAuthentication({ children }) {
         navigate("/");
     }
     return (
-        <div>{children}</div>
+        <>{children}</>
     )
 }
 

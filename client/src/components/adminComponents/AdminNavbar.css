@@ -1,6 +1,6 @@
 .admin_navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background-color: #27273d;
     color: white;
@@ -21,6 +21,8 @@
 
 .admin_navbar-links li {
     list-style: none;
+    /* border: 2px solid cyan; */
+    justify-content: center;
 }
 
 .admin_navbar-links li a {
