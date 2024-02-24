@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
-import { NavLink, useNavigate, Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import "./AdminNavbar.css";
 
 const AdminNavbar = () => {
-  const navigate = useNavigate();
   const myElementRef = useRef(null);
 
   return (
@@ -18,9 +17,9 @@ const AdminNavbar = () => {
       </Link>
       <div class="admin_navbar-links" ref={myElementRef}>
         <ul>
-          <li><NavLink to="/admin">Home</NavLink></li>
-          <li><NavLink to="/clients">Clients</NavLink></li>
-          <li><NavLink to="/addproduct">Products</NavLink></li>
+          <li><NavLink to="admin">Home</NavLink></li>
+          <li><NavLink to="clients">Clients</NavLink></li>
+          <li><NavLink to="addproduct">Products</NavLink></li>
         </ul>
       </div>
     </nav>

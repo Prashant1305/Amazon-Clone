@@ -1,3 +1,16 @@
 #admin_home {
     position: relative;
+    top: 60px;
+    z-index: 10;
+    height: 50vh;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#admin_text {
+    font-size: 100px;
+    font-weight: bold;
+    /* border: 2px solid blue; */
 }

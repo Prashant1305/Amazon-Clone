@@ -11,7 +11,7 @@ import { getSearchResult } from '../../utils/ApiUtils';
 import { MyProduct } from '../../Context/ProductItemContext';
 
 function Navbar() {
-    const { isLogin } = MyLoginValues();
+    const { isLogin, clientData } = MyLoginValues();
     const { cartNumber } = CartValue()
     const [searchInput, setSearchInput] = useState("");
     const { setDetailsData } = MyProduct();
@@ -51,6 +51,7 @@ function Navbar() {
                 </div>
                 <div className='right'>
                     <div className="nav_btn">
+                        {clientData && isLogin && clientData.isAdmin && <NavLink to="/admin">Admin</NavLink>}
                         {!isLogin && <NavLink to="/signin">Sign in</NavLink>}{isLogin && <NavLink to="/signout">Sign out</NavLink>}
                     </div>
                     <div className="nav_btn">
