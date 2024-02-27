@@ -10,3 +10,17 @@
     font-weight: 600;
     margin-bottom: 2.5rem;
 }
+
+.bottom_part {
+    display: flex;
+    /* border: 2px solid blue; */
+    justify-content: space-between;
+}
+
+.order_btn {
+    /* border: 2px solid cyan; */
+    border: none;
+    font-size: xx-large;
+    background-color: #ffbc2c;
+    padding: 8px;
+}

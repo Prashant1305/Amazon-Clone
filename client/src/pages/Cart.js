@@ -42,7 +42,10 @@ function Cart() {
             <CartItem {...item} key={item._id} />
           ))}
         </div>
-        <h1>Total Amount - &#8377; {total}</h1>
+        <div className={styles.bottom_part}>
+          <h1>Total Amount - &#8377; {total}</h1>
+          <button className={styles.order_btn}>Place order</button>
+        </div>
       </div>
     </>
   );
