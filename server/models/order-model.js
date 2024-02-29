@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    items: [{ object_id: String, quantity: Number }],
+    items: [{ object_id: String, id: String, quantity: Number }],
 });
 const Order = new mongoose.model("order", orderSchema);
 module.exports = Order;

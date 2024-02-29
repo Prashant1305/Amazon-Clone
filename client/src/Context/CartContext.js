@@ -36,8 +36,8 @@ function reducer(cartData, action) {
                     return temp;
                 }
             }
-            let { _id, url, name, discounted_price, stock_quantity } = action.productData;
-            temp.push({ _id, url, name, discounted_price, quantity: 1, stock_quantity });
+            let { _id, id, url, name, discounted_price, stock_quantity } = action.productData;
+            temp.push({ _id, id, url, name, discounted_price, quantity: 1, stock_quantity });
             return temp;
 
         case "remove":
@@ -71,14 +71,14 @@ function reducer(cartData, action) {
         case "addQuantity":
             const addQuantity_id = action._id;
             let finalIncreaseCart = [];
-            cartData.map((item) => {
+            cartData.forEach((item) => {
                 if (item._id === addQuantity_id) {
                     if (item.quantity >= item.stock_quantity) {
                         alert(`only ${item.stock_quantity} availble`);
                         finalIncreaseCart.push(item);
                     }
                     else {
-                        finalIncreaseCart.push({ ...item, ['quantity']: item.quantity + 1 });
+                        finalIncreaseCart.push({ ...item, 'quantity': item.quantity + 1 });
                     }
                 }
                 else {
@@ -99,8 +99,8 @@ function CartContext({ children }) {
     const { isLogin, token } = MyLoginValues();
     useEffect(() => {
         if (!isLogin) {
-            setCartNumber("plz_signin");
             setCartData({ task: "restoreCart", newCartData: [] });
+            setCartNumber("plz_signin");
 
         } else {
             let rawToken = localStorage.getItem("token");
@@ -121,7 +121,6 @@ function CartContext({ children }) {
                 .catch((error) => {
                     console.log(error);
                 })
-            setCartNumber(`${cartData.length}`);
         }
     }, [isLogin]);
 
