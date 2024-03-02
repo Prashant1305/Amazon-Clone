@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Sign.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signup } from "../utils/ApiUtils";
+import { toast } from 'react-toastify';
 
 function SignUp() {
   const [userData, setUserData] = useState({
@@ -22,13 +23,13 @@ function SignUp() {
         .then((res) => {
           // console.log(res.data);
           navigate("/signin");
-          alert(res.data.msg);
+          toast.success(res.data.msg);
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
-      alert("password did not match");
+      toast.warning("password did not match");
       setUserData({ ...userData, password: "", passwordAgain: "" });
     }
   };

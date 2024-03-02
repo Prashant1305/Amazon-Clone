@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import "./Sign.css"
 import { MyLoginValues } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 function SignOut() {
     const navigate = useNavigate();
@@ -9,6 +10,7 @@ function SignOut() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLogin(false);
+        toast.success("Logout Successful");
         navigate('/');
     }
     return (

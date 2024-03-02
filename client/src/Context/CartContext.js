@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import { MyLoginValues } from './AuthContext';
 import { getCartDataFromServer, postCartData } from '../utils/ApiUtils';
-
+import { toast } from 'react-toastify';
 
 function reducer(cartData, action) {
     // console.log(action);
@@ -13,7 +13,7 @@ function reducer(cartData, action) {
         case "addInCart": // also whole product data
             let temp = [...cartData];
             if (action.productData.stock_quantity === 0) {
-                alert("Item out stock");
+                toast.error("Item out stock");
                 return temp;
             }
             if (temp.length > 0) {
@@ -23,13 +23,13 @@ function reducer(cartData, action) {
                 // console.log(addedItem)
                 if (addedItem) {
                     if (addedItem.quantity === addedItem.stock_quantity) {
-                        alert("you have reached stock limit");
+                        toast.info("you have reached stock limit");
                     }
                     else {
                         temp.forEach((item) => {
                             if (item._id === addedItem._id) {
                                 item.quantity++;
-                                alert(`${item.quantity} ${item.name.substr(0, 10)}... in cart`);
+                                toast.info(`${item.quantity} ${item.name.substr(0, 10)}... in cart`);
                             }
                         })
                     }
@@ -74,7 +74,7 @@ function reducer(cartData, action) {
             cartData.forEach((item) => {
                 if (item._id === addQuantity_id) {
                     if (item.quantity >= item.stock_quantity) {
-                        alert(`only ${item.stock_quantity} availble`);
+                        toast.info(`only ${item.stock_quantity} availble`);
                         finalIncreaseCart.push(item);
                     }
                     else {
@@ -114,7 +114,7 @@ function CartContext({ children }) {
                         setCartData({ task: "restoreCart", newCartData: res.data.msg });
                     }
                     else if (res.status === 202) {
-                        alert(res.data.msg);
+                        toast.success(res.data.msg);
                     }
 
                 })
@@ -134,11 +134,11 @@ function CartContext({ children }) {
             postCartData({ items }, token)
                 .then((res) => {
                     if (res.status === 200) {
-                        alert("cart data posted");
+                        toast.success("cart data posted");
                     }
                 })
                 .catch((error) => {
-                    alert("failed to upload");
+                    toast.error("failed to upload");
                     console.log("error from updateCartDataToServer", error);
                 })
         }

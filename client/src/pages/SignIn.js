@@ -3,6 +3,7 @@ import "./Sign.css";
 import { useNavigate } from "react-router-dom";
 import { signin } from '../utils/ApiUtils';
 import { MyLoginValues } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 function SignIn() {
     const [userData, setUserData] = useState({
@@ -18,14 +19,14 @@ function SignIn() {
             .then((res) => {
                 // console.log(res);
                 if (res.status === 202) {
-                    alert(`${res.data.msg}`);
+                    toast.warning(`${res.data.msg}`);
                     setUserData({ ...userData, "password": "" });
                 }
                 else {
                     navigate("/");
                     localStorage.setItem("token", JSON.stringify(res.data.token));
                     setIsLogin(true);
-                    alert("login successfull");
+                    toast.success("login successfull");
                 }
             })
             .catch((error) => { console.log(error); })
