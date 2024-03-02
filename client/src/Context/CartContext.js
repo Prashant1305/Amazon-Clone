@@ -114,6 +114,7 @@ function CartContext({ children }) {
                         setCartData({ task: "restoreCart", newCartData: res.data.msg });
                     }
                     else if (res.status === 202) {
+                        setCartNumber(0);
                         toast.success(res.data.msg);
                     }
 

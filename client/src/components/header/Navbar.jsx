@@ -65,7 +65,11 @@ function Navbar() {
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         </div>
                     </NavLink>
-                    <NavLink to="/"><div className='avatar'><Avatar /></div></NavLink>
+                    <NavLink to="/">
+                        <div className='avatar'>
+                            <Avatar >{isLogin && clientData && `${clientData.username[0].toUpperCase()}`}</Avatar>
+                        </div>
+                    </NavLink>
 
                 </div>
             </nav>
