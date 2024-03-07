@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "./Admincss/product.css";
+import "./AddProduct.css";
 import { addproduct } from "../../utils/ApiUtils";
 import { MyLoginValues } from "../../Context/AuthContext";
 
@@ -60,13 +60,14 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
+    <>
       <section>
         <div className="product_container">
-          <div className="product_header">
-            <h1>Product Details</h1>
+          <div className='sign_header'>
+            <img src='../../blacklogoamazon.png' alt='amazonlogo' />
           </div>
-          <div className="details_form">
+          <div className="product_details_form">
+            <h1>Product Details</h1>
             <form onSubmit={handlesubmit}>
               <div className="form_data">
                 <label htmlFor="id">Product ID</label>
@@ -85,7 +86,7 @@ const AddProduct = () => {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="Product Name"
+                  placeholder="Full Product Name"
                   onChange={handlechange}
                   value={ProductData.name}
                 />
@@ -96,7 +97,7 @@ const AddProduct = () => {
                   type="number"
                   name="stock_quantity"
                   id="stock_quantity"
-                  placeholder="Enter stock quantity"
+                  placeholder="0 for out of stock"
                   onChange={handlechange}
                   value={ProductData.stock_quantity}
                 />
@@ -107,7 +108,7 @@ const AddProduct = () => {
                   type="text"
                   name="category"
                   id="category"
-                  placeholder="Enter category"
+                  placeholder="Mobile|electronics"
                   onChange={handlechange}
                   value={ProductData.category}
                 />
@@ -118,7 +119,7 @@ const AddProduct = () => {
                   type="number"
                   name="actual_price"
                   id="actual_price"
-                  placeholder="Enter Actual Price"
+                  placeholder="Price in rs"
                   onChange={handlechange}
                   value={ProductData.actual_price}
                 />
@@ -129,7 +130,7 @@ const AddProduct = () => {
                   type="number"
                   name="discounted_price"
                   id="discounted_price"
-                  placeholder="Enter Discounted Price"
+                  placeholder="Price in rs"
                   onChange={handlechange}
                   value={ProductData.discounted_price}
                 />
@@ -140,7 +141,7 @@ const AddProduct = () => {
                   type="number"
                   name="discount_percentage"
                   id="discount_percentage"
-                  placeholder="Enter Discounted percentage"
+                  placeholder="enter in numbers only"
                   onChange={handlechange}
                   value={ProductData.discount_percentage}
                 />
@@ -162,7 +163,7 @@ const AddProduct = () => {
                   type="text"
                   name="url"
                   id="url"
-                  placeholder="Enter product URL"
+                  placeholder="https..."
                   onChange={handlechange}
                   value={ProductData.url}
                 />
@@ -173,7 +174,7 @@ const AddProduct = () => {
                   type="number"
                   name="rating"
                   id="rating"
-                  placeholder="Enter product Rating"
+                  placeholder="Enter product Rating from 0 to 5"
                   onChange={handlechange}
                   value={ProductData.rating}
                 />
@@ -184,21 +185,21 @@ const AddProduct = () => {
                   type="number"
                   name="rating_count"
                   id="rating_count"
-                  placeholder="Enter Rating of product"
+                  placeholder=""
                   onChange={handlechange}
                   value={ProductData.rating_count}
                 />
               </div>
               <div className="form_data">
-                <button className="btn" type="submit">
-                  Submit
+                <button className="add_product_btn" type="submit">
+                  Add Product
                 </button>
               </div>
             </form>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

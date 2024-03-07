@@ -1,13 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "./AdminNavbar";
+import AdminAuthentication from "./AdminAuthentication";
 
 const AdminLayout = () => {
   return (
-    <div>
+    <AdminAuthentication>
       <AdminNavbar />
       <Outlet />
-    </div>
+    </AdminAuthentication>
   );
 };
 

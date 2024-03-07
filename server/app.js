@@ -8,6 +8,7 @@ const productRoute = require("./routes/product-routes");
 const errorMiddleware = require("./middleware/error-middleware");
 const adminProductRoutes = require("./routes/admin-routes/admin-product-routes");
 const adminBannerRoutes = require("./routes/admin-routes/admin-banner-route");
+const orderRoutes = require("./routes/order-routes");
 const cors = require("cors");
 
 // handling cors error
@@ -25,6 +26,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/admin/product", adminProductRoutes);
 app.use("/api/admin/banner", adminBannerRoutes);
+app.use("/api/order", orderRoutes);
 
 app.use(errorMiddleware);
 
