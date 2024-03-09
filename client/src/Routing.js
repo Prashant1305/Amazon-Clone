@@ -20,6 +20,7 @@ import AdminLayout from "./components/adminComponents/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
+import Location from "./pages/Location";
 
 function Routing() {
   const router = createBrowserRouter(
@@ -39,6 +40,7 @@ function Routing() {
         <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
         <Route path="productpage" element={<ProductItems />} />
+        <Route path="location" element={<Location />} />
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />

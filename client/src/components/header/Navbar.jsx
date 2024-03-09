@@ -36,7 +36,7 @@ function Navbar() {
             <nav>
                 <div className='left'>
                     <div className='navlogo'>
-                        <NavLink to='/'><img src="../amazon_PNG25.png" alt="failed to load" /></NavLink>
+                        <NavLink to='/'><img src="../digital store.png" alt="failed to load" /></NavLink>
                     </div>
                     <div className='nav_searchbaar'>
                         <input type="text" name="searchInput" id="searchInput" onChange={(e) => {

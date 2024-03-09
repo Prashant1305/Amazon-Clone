@@ -42,7 +42,7 @@ function SignUp() {
       <section>
         <div className="sign_container">
           <div className="sign_header">
-            <img src="./blacklogoamazon.png" alt="amazonlogo" />
+            <img src="./blacklogodigitalstore.png" alt="blacklogodigitalstore" />
           </div>
           <div className="sign_form">
             <form onSubmit={handlesubmit}>

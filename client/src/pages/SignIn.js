@@ -40,7 +40,7 @@ function SignIn() {
             <section>
                 <div className='sign_container'>
                     <div className='sign_header'>
-                        <img src='./blacklogoamazon.png' alt='amazonlogo' />
+                        <img src='./blacklogodigitalstore.png' alt='digitalStorelogo' />
                     </div>
                     <div className='sign_form'>
                         <form onSubmit={handlesubmit}>
@@ -57,10 +57,10 @@ function SignIn() {
                         </form>
                     </div>
                     <div className='create_accountinfo'>
-                        <p>New To Amazon</p>
+                        <p>New To Digital Store</p>
                         <button onClick={() => {
                             navigate("/signup");
-                        }}>Create your Amazon Account</button>
+                        }}>Create your Digital Store Account</button>
                     </div>
                 </div>
             </section>
