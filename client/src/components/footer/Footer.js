@@ -14,7 +14,7 @@ const Footer = () => {
                     <p>About us</p>
                     <p>Careers</p>
                     <p>Press Releases</p>
-                    <p>Amazon Cares</p>
+                    <p>Digital Store Cares</p>
                 </div>
                 <div className="footr_details_one">
                     <h3>Connect with Us</h3>
@@ -36,7 +36,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="lastdetails">
-                <img src="./amazon_PNG25.png" alt="logo" />
+                <img src="./DigitalStore_PNG25.png" alt="digitalStorelogo" />
                 <p>Conditions of Use & Sale &nbsp; &nbsp;&nbsp;  Privacy Notice  &nbsp; &nbsp;&nbsp; Interest-Based Ads  &nbsp; &nbsp;&nbsp;  © 1996-{year}, Amazon.com, Inc. or its affiliates</p>
             </div>
         </footer>

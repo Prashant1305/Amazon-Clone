@@ -15,27 +15,28 @@ function Cart() {
   let orderData = { address: "xyz", items: [] };
 
   const handlePlaceOrder = () => {
-    const today = new Date();
-    var currentDate = today.toLocaleDateString();
-    if (cartData) {
-      const items = cartData.map((item) => {
-        return { "object_id": item._id, id: item.id, "quantity": item.stock_quantity }
-      });
-      const timeOfOrder = {
-        "timestamp": `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`,
-        "date": currentDate
-      }
-      orderData = { ...orderData, timeOfOrder, items, status: "ordered" };
-    }
+    navigate("/checkout");
+    // const today = new Date();
+    // var currentDate = today.toLocaleDateString();
+    // if (cartData) {
+    //   const items = cartData.map((item) => {
+    //     return { "object_id": item._id, id: item.id, "quantity": item.stock_quantity }
+    //   });
+    //   const timeOfOrder = {
+    //     "timestamp": `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`,
+    //     "date": currentDate
+    //   }
+    //   orderData = { ...orderData, timeOfOrder, items, status: "ordered" };
+    // }
 
-    placeOrder(token, orderData)
-      .then((res) => {
-        toast.success(res.data.msg);
-        setCartData({ task: "restoreCart", newCartData: [] });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // placeOrder(token, orderData)
+    //   .then((res) => {
+    //     toast.success(res.data.msg);
+    //     setCartData({ task: "restoreCart", newCartData: [] });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   useEffect(() => {

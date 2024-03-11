@@ -30,7 +30,7 @@ function useGeoLocation() {
                 message: "Gelocation not supported"
             });
         }
-        console.dir(navigator.geolocation);
+        // console.dir(navigator.geolocation);
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
     }, []);

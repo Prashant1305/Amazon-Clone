@@ -1,6 +1,7 @@
 const User = require("../models/user-model");
 const Cart = require("../models/cart-model");
 const Product = require('../models/product-model');
+const AddressInfo = require('../models/address-model');
 
 const home = async (req, res, next) => {
     res.status(200).json({ msg: "response from server" });
@@ -90,4 +91,39 @@ const getCartData = async (req, res, next) => {
     }
 }
 
-module.exports = { home, register, login, getClientData, postCartData, getCartData };
+const addAddress = async (req, res, next) => {
+    try {
+        const email = req.clientAuthData.email;
+        const emailExist = await AddressInfo.findOne({ email });
+
+        if (emailExist) {
+            const updatedLst = [...emailExist.deliveryAddress, req.body.deliveryAddress[0]];
+            await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedLst } });
+            return res.status(200).json({ msg: "address list updated" });
+        }
+
+        const address = { email, deliveryAddress: req.body.deliveryAddress };
+        await AddressInfo.create(address);
+        res.status(200).json({ message: "Address created successfully" });
+
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}
+
+const getAddress = async (req, res, next) => {
+    try {
+        const email = req.clientAuthData.email;
+        const addressExist = await AddressInfo.findOne({ email });
+        if (addressExist) {
+            return res.status(200).json({ msg: addressExist });
+        } else {
+            return res.status(202).json({ msg: "no address found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { home, register, login, getClientData, postCartData, getCartData, addAddress, getAddress };

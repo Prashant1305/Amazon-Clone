@@ -20,7 +20,9 @@ import AdminLayout from "./components/adminComponents/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
-import Location from "./pages/Location";
+import AddAddress from "./pages/AddAddress";
+import Checkout from "./pages/Checkout";
+
 
 function Routing() {
   const router = createBrowserRouter(
@@ -40,7 +42,9 @@ function Routing() {
         <Route path="product/:id" element={<ProductInDetails />} />
         <Route path="cart" element={<Cart />} />
         <Route path="productpage" element={<ProductItems />} />
-        <Route path="location" element={<Location />} />
+        <Route path="addaddress" element={<AddAddress />} />
+        <Route path="checkout" element={<Checkout />} />
+
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
