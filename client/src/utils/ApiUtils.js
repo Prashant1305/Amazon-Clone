@@ -138,3 +138,13 @@ export const placeOrder = (token, data) => {
   });
   return response;
 }
+
+export const allAddresses = (token) => {
+  const url = `${baseUrl}/api/auth/getAddress`;
+  const response = axios.get(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}

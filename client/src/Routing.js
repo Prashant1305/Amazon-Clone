@@ -22,6 +22,7 @@ import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
 import AddAddress from "./pages/AddAddress";
 import Checkout from "./pages/Checkout";
+import EditAddress from "./pages/EditAddress";
 
 
 function Routing() {
@@ -44,7 +45,7 @@ function Routing() {
         <Route path="productpage" element={<ProductItems />} />
         <Route path="addaddress" element={<AddAddress />} />
         <Route path="checkout" element={<Checkout />} />
-
+        <Route path="editaddress/:number" element={<EditAddress />} />
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />

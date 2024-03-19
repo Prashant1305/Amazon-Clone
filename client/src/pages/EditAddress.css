@@ -1,0 +1,17 @@
+.edit_address_container {
+    position: relative;
+    width: 100%;
+    top: 60px;
+}
+
+.sign_form .check_box {
+    border: 2px solid blue;
+}
+
+.sign_form .check_box label {
+    border: 2px solid red;
+}
+
+.sign_form .check_box input {
+    border: 2px solid red;
+}

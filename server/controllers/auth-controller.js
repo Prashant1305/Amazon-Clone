@@ -97,7 +97,15 @@ const addAddress = async (req, res, next) => {
         const emailExist = await AddressInfo.findOne({ email });
 
         if (emailExist) {
-            const updatedLst = [...emailExist.deliveryAddress, req.body.deliveryAddress[0]];
+            // let updatedLst = [...emailExist.deliveryAddress, req.body.deliveryAddress[0]];
+            let updatedLst = [...emailExist.deliveryAddress];
+            if (req.body.deliveryAddress[0].defaultAddress) {
+                updatedLst.forEach((address) => {
+                    address.defaultAddress = false;
+                })
+            }
+            updatedLst = [...updatedLst, req.body.deliveryAddress[0]];
+            // console.log(emailExist.deliveryAddress);
             await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedLst } });
             return res.status(200).json({ msg: "address list updated" });
         }
@@ -126,4 +134,25 @@ const getAddress = async (req, res, next) => {
     }
 }
 
-module.exports = { home, register, login, getClientData, postCartData, getCartData, addAddress, getAddress };
+const updateAddress = async (req, res, next) => {
+    try {
+        const email = req.clientAuthData.email;
+
+        let addressExist = await AddressInfo.findOne({ email });
+
+        const updatedAddress = addressExist.deliveryAddress.map((address) => {
+
+            if (req.body.deliveryAddress[0]._id === address._id.toString()) {
+                return req.body.deliveryAddress[0];
+            }
+            return address;
+        })
+
+        await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedAddress } });
+        res.status(200).json({ msg: "address updated succesfully" });
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { home, register, login, getClientData, postCartData, getCartData, addAddress, getAddress, updateAddress };

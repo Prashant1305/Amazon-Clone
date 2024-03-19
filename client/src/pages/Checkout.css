@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     top: 60px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     min-height: 60vh;
@@ -11,8 +11,9 @@
 }
 
 .checkout_items {
-    border: 2px solid green;
-    min-width: 600px;
+    /* border: 1px solid rgb(203, 207, 207); */
+    /* min-width: 600px; */
+    width: 70vw;
     margin: 5px;
 
 }
@@ -20,14 +21,15 @@
 .checkout_items_headers {
     display: flex;
     justify-content: space-between;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .item_line {
-    width: 550px;
-    border: 2px solid grey;
+    width: 70vw;
+    border: 1px solid grey;
 }
 
 .header_heading {
     font-size: xx-large;
+    font-weight: 600;
 }
