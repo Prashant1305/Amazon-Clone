@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import { signup } from "../utils/ApiUtils";
+import { addAddress } from "../utils/ApiUtils";
 import { toast } from 'react-toastify';
 
 function AddAddress() {
@@ -18,6 +18,12 @@ function AddAddress() {
     const navigate = useNavigate();
     const handlesubmit = (e) => {
         e.preventDefault();
+        try {
+            addAddress()
+        } catch (error) {
+            console.log(error);
+        }
+
     };
     const handleChange = (e) => {
         // console.log(address);

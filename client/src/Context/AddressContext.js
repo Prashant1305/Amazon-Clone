@@ -22,12 +22,10 @@ function AddressContext({ children }) {
         if (token) {
             getAllAddress();
         }
-        // console.log(token);
-
     }, [token]);
 
     return (
-        <deliveryAddressContext.Provider value={{ allAddress, setAllAddress }}>{children}</deliveryAddressContext.Provider>
+        <deliveryAddressContext.Provider value={{ allAddress, setAllAddress, getAllAddress }}>{children}</deliveryAddressContext.Provider>
     )
 }
 

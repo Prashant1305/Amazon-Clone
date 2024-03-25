@@ -37,12 +37,13 @@ section {
     font-size: 13px;
     font-weight: 700;
     margin-bottom: 1px;
+    /* border: 2px solid green; */
 }
 
-.product_details_form input {
+.product_details_form .input_feild {
     width: 97%;
     height: 27px;
-    /* padding: 3px 7px; */
+    padding: 3px 7px;
     border-radius: 3px;
     outline: none;
     border: 1px solid #a6a6a6;
@@ -64,55 +65,15 @@ section {
     background: linear-gradient(to bottom, #f7dfa5, #f0c14b)
 }
 
-.product_details_form input:focus {
+.product_details_form .input_feild:focus {
     box-shadow: 0 0 5px 0px #ffbc2c;
 }
 
-.product_details_form .signin_info {
-    margin-top: 23px;
-    display: flex;
-    margin-bottom: 10px;
+.form_data {
+    border: 2px solid red;
+
 }
 
-.product_details_form .signin_info p {
-    font-size: 13px;
-    font-weight: 600;
-    color: #222;
-}
-
-
-.product_details_form .signin_info a {
-    font-size: 13px;
-    letter-spacing: .5px;
-    margin-left: 5px;
-    color: #0066c0;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-
-/* for login page */
-.create_accountinfo p {
-    font-size: 12px;
-    text-align: center;
-    color: #767676;
-    margin-top: 20px;
-    font-weight: 600;
-}
-
-.create_accountinfo button {
-    background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
-    height: 29px;
-    width: 300px;
-    border-radius: 3px;
-    border: 1px solid #adb1b8;
-    outline: none;
-    margin-top: 15px;
-}
-
-.create_accountinfo a {
-    text-decoration: none;
-    color: #111;
-    padding: 10px 35px;
-    letter-spacing: .5px;
-}
+/* #inp_url_choose_file {
+    border: 2px solid #0066c0;
+} */

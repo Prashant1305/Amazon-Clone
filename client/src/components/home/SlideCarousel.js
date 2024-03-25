@@ -2,8 +2,7 @@ import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from "@mui/material";
-import "./Slide.css";
-import { HomepageValue } from "../../Context/HomePageContext"
+import "./SlideCarousel.css";
 import { NavLink } from 'react-router-dom';
 
 const responsive = {
@@ -20,13 +19,8 @@ const responsive = {
         items: 1
     }
 };
-
-const Slide = ({ title }) => {
-    const { todaysDealData, itemInStoreData } = HomepageValue();
-    if (title === "Today's Deal" && todaysDealData.length === 0) {
-        return <h1>Loading</h1>
-    }
-    if (title === "Item in store" && itemInStoreData.length === 0) {
+function SlideCarousel({ data, title }) {
+    if (!data || data.length === 0) {
         return <h1>Loading</h1>
     }
     return (
@@ -36,7 +30,6 @@ const Slide = ({ title }) => {
                 <button className="view_btn">View All</button>
             </div>
             <Divider />
-
             <Carousel
                 responsive={responsive}
                 infinite={true}
@@ -53,13 +46,13 @@ const Slide = ({ title }) => {
                 containerClass="carousel-container"
             >
                 {
-                    title === "Today's Deal" && todaysDealData.map((e) => {
+                    data && data.map((e) => {
 
                         return (
                             <NavLink to={`./product/${e._id}`} key={e._id}>
                                 <div className="products_items" >
                                     <div className="product_img">
-                                        <img src={e.url} alt="product" />
+                                        <img src={e.url[0]} alt="product" />
                                     </div>
                                     <p className="products_name">{e.name.substr(0, 24)}...</p>
                                     <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
@@ -69,27 +62,9 @@ const Slide = ({ title }) => {
                         )
                     })
                 }
-                {
-                    title === "Item in store" && itemInStoreData.map((e) => {
-
-                        return (
-                            <NavLink to={`./product/${e._id}`} key={e._id}>
-                                <div className="products_items" >
-                                    <div className="product_img">
-                                        <img src={e.url} alt="product" />
-                                    </div>
-                                    <p className="products_name">{e.name.substr(0, 24)}...</p>
-                                    <p className="products_offer" style={{ color: "#  007185" }}>Upto&nbsp;{e.discount_percentage}%</p>
-                                    <p className="products_explore">{e.category.substr(0, 24)}...</p>
-                                </div>
-                            </NavLink>
-                        )
-                    })
-                }
-
             </Carousel>
         </div>
     )
 }
 
-export default Slide
+export default SlideCarousel

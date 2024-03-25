@@ -2,39 +2,84 @@ import React, { useEffect, useState } from 'react';
 import "./EditAddress.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import { MyAddresses } from '../Context/AddressContext';
-
+import { updateAddress } from '../utils/ApiUtils';
+import { MyLoginValues } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 function EditAddress() {
     const navigate = useNavigate();
-    const { allAddress } = MyAddresses();
-    const params = useParams()
-    console.log(params.number);
-    const [editAddressInfo, setEditAddressInfo] = useState({ ...allAddress[params.number] });
+    const { allAddress, getAllAddress } = MyAddresses();
+    const [fillDetails, setFillDetails] = useState();
+    const [editAddressInfo, setEditAddressInfo] = useState({
+        _id: "",
+        fullname: "",
+        phone: "",
+        pincode: "",
+        flat: "",
+        area: "",
+        state: "",
+        defaultAddress: false
+    });
 
-    const handlesubmit = (e) => {
+    const { token } = MyLoginValues();
+    const params = useParams();
+
+    useEffect(() => {
+        const loadDetails = () => {
+            allAddress.forEach((address) => {
+                if (address._id === params._id) {
+                    setEditAddressInfo({ ...address });
+                    setFillDetails(address);
+                }
+            })
+        };
+        loadDetails();
+
+    }, []);
+
+    const [enableSubmitbutton, setEnableSubmitbutton] = useState(false);
+
+    useEffect(() => {
+
+        if (editAddressInfo && fillDetails && (fillDetails.fullname !== editAddressInfo.fullname || fillDetails.phone !== editAddressInfo.phone || fillDetails.pincode !== editAddressInfo.pincode || fillDetails.flat !== editAddressInfo.flat || fillDetails.area !== editAddressInfo.area || fillDetails.landmark !== editAddressInfo.landmark || fillDetails.town !== editAddressInfo.town || fillDetails.state !== editAddressInfo.state || fillDetails.defaultAddress !== editAddressInfo.defaultAddress)) {
+            setEnableSubmitbutton(true);
+        } else {
+            setEnableSubmitbutton(false);
+        }
+    }, [editAddressInfo]);
+
+    const handlesubmit = async (e) => {
         e.preventDefault();
+        try {
+            const data = { "deliveryAddress": [{ ...editAddressInfo }] };
+            const res = await updateAddress(token, data);
+            toast.success(res.data.msg);
+            navigate('/checkout');
+            getAllAddress();
+        } catch (error) {
+            console.log(error);
+            toast.error("failed to update address");
+        }
     };
 
 
     const handleChange = (e) => {
-        // console.log(address);
         setEditAddressInfo({ ...editAddressInfo, [e.target.id]: e.target.value });
     };
-    if (!editAddressInfo) {
-        return (<div className="edit_address_container"><h1>Loading...</h1></div>)
-    }
-    else if (Object.keys(editAddressInfo).length === 0) {
-        return (<div className="edit_address_container"><h1>you are  not authorised </h1></div>)
-    }
-    return (
-        <>
+
+    return (<>
+        {
+            editAddressInfo._id === "" && <div className="edit_address_container"><h1>you are not authorised! </h1></div>
+        }
+        {
+            editAddressInfo._id !== "" &&
             <section>
                 <div className="sign_container">
                     <div className="sign_header">
                         <img src="../blacklogodigitalstore.png" alt="blacklogodigitalstore" />
                     </div>
                     <div className="sign_form">
-                        <form onSubmit={handlesubmit}>
+                        <form >
                             <h1>Add new address</h1>
                             <div className="form_data">
                                 <label htmlFor="Fullname">Full Name</label>
@@ -135,23 +180,27 @@ function EditAddress() {
                                 />
                             </div>
                             <div className="form_data">
-                                <label htmlFor="deliveryAddress">Add as default address</label>
+                                <label htmlFor="defaultAddress">Add as default address</label>
                                 <input
                                     type="text"
-                                    name="deliveryAddress"
-                                    id="deliveryAddress"
+                                    name="defaultAddress"
+                                    id="defaultAddress"
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
                                     value={editAddressInfo.defaultAddress}
                                 />
                             </div>
-                            <button className="signin_btn">Update Address</button>
+                            {enableSubmitbutton && <button className="signin_btn" onClick={(e) => {
+                                handlesubmit(e);
+                            }}>Update Address</button>}
                         </form>
                     </div>
                 </div>
             </section>
-        </>
+
+        }
+    </>
     )
 }
 

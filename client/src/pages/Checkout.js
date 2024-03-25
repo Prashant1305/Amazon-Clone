@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Addresses from '../components/addresses/Addresses';
 import { MyLoginValues } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import PaymentOptions from '../components/payment/PaymentOptions';
 
 function Checkout() {
     const [toggleDelivery, setToggleDelivery] = useState(false);
@@ -45,7 +46,7 @@ function Checkout() {
                     {!togglePayment && <FaChevronDown />}
                     {togglePayment && <FaChevronUp />}
                 </div>
-                {togglePayment && <div>paytm</div>}
+                {togglePayment && <PaymentOptions />}
             </div>
             <div className='item_line'></div>
             <div className='checkout_items' onClick={(e) => {

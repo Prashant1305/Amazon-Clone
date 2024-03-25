@@ -12,7 +12,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import SignOut from "./pages/SignOut";
 import Error from "./pages/Error";
-import HomePageContext from "./Context/HomePageContext";
+
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
 import ProductItems from "./pages/ProductItems";
@@ -32,9 +32,7 @@ function Routing() {
         <Route
           index
           element={
-            <HomePageContext>
-              <Home />
-            </HomePageContext>
+            <Home />
           }
         />
         <Route path="signin" element={<SignIn />} />
@@ -45,7 +43,7 @@ function Routing() {
         <Route path="productpage" element={<ProductItems />} />
         <Route path="addaddress" element={<AddAddress />} />
         <Route path="checkout" element={<Checkout />} />
-        <Route path="editaddress/:number" element={<EditAddress />} />
+        <Route path="editaddress/:_id" element={<EditAddress />} />
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />

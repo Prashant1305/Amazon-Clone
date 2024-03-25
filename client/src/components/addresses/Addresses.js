@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import "./Addresses.css";
 import { v4 as uuid } from 'uuid';
 import { MyAddresses } from '../../Context/AddressContext';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Addresses() {
     const navigate = useNavigate();
     const { allAddress } = MyAddresses();
-    let index = -1;
+
     return (
         <div className='address_container' >
             <div className='address_box add_address' onClick={() => {
@@ -16,7 +16,6 @@ function Addresses() {
                 <p>Add Address</p>
             </div>
             {allAddress && allAddress.map((address) => {
-                index++;
                 return (<div key={uuid()}>
                     <div className='address_box' >
                         {address.defaultAddress && <div className='default_container'>Default Address</div>}
@@ -38,7 +37,7 @@ function Addresses() {
 
                         <div className='address_delete_edit'>
                             <span onClick={() => {
-                                navigate(`/editaddress/${index}`);
+                                navigate(`/editaddress/${address._id}`);
                             }}>Edit</span> | <span>Remove</span>
                         </div>
                     </div>

@@ -24,6 +24,6 @@ router.post("/postcartdata", authMiddleware, postCartData);
 router.get("/getcartdata", authMiddleware, getCartData);
 router.post("/addaddress", authMiddleware, validate(addressSchema), addAddress);
 router.get("/getaddress", authMiddleware, getAddress);
-router.get("/updateaddress", authMiddleware, validate(addressSchema), updateAddress);
+router.post("/updateaddress", authMiddleware, validate(addressSchema), updateAddress);
 
 module.exports = router;

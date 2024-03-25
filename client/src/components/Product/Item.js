@@ -12,7 +12,7 @@ function Item({ details }) {
                 <div id="item_image" onClick={(e) => {
                     navigate(`../product/${details._id}`)
                 }}>
-                    <img src={`${details.url}`} alt="failed to load" className='image_tag' />
+                    <img src={`${details.url[0]}`} alt="failed to load" className='image_tag' />
                 </div>
                 <div id='middle_section' onClick={(e) => {
                     navigate(`../product/${details._id}`)

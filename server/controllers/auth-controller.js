@@ -139,11 +139,15 @@ const updateAddress = async (req, res, next) => {
         const email = req.clientAuthData.email;
 
         let addressExist = await AddressInfo.findOne({ email });
+        let defaultAddressChange = req.body.deliveryAddress[0].defaultAddress;
 
         const updatedAddress = addressExist.deliveryAddress.map((address) => {
 
             if (req.body.deliveryAddress[0]._id === address._id.toString()) {
                 return req.body.deliveryAddress[0];
+            }
+            if (defaultAddressChange) {
+                address.defaultAddress = false;
             }
             return address;
         })

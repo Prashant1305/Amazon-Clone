@@ -43,10 +43,11 @@ const productSchema = new mongoose.Schema({
 
   },
 
-  url: {
+  url: [{
     type: String,
     required: true,
-  },
+  }
+  ],
 
   rating: {
     type: Number,

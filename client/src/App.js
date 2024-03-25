@@ -29,7 +29,7 @@ function App() {
           <AddressContext>
             <div className="App">
               <Routing />
-              {/* <Temp /> //mount this to upload product data with isAdmin=true */}
+              {/* <Temp /> mount this to upload product data with isAdmin=true */}
             </div>
           </AddressContext>
         </ProductItemContext>

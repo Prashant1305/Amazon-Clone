@@ -36,16 +36,16 @@ function Temp() {
                         discounted_price: Number(cleanNumberString(item.discounted_price)),
                         discount_percentage: Number(cleanNumberString(item.discount_percentage)),
                         about: item.about_product,
-                        url: item.img_link,
+                        url: [item.img_link],
                         rating: Number(cleanNumberString(item.rating)),
                         rating_count: Number(cleanNumberString(item.rating_count)),
                     }
                     try {
                         console.log(ob);
-                        await axios.post(`${baseUrl}/api/admin/product/add`, ob, {
+                        await axios.post(`${baseUrl}/api/admin/product/addproduct`, ob, {
                             headers: {
                                 "Content-Type": "application/json",
-                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWJkZWZlZjU2ZWVmZTE4ZWZmODQzZmIiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTcwNzE0NDk1MywiZXhwIjoxNzA5NzM2OTUzfQ.uAOGOwm26jkLpdtPj8jEbFwC5maKzanTRmZen-IzMyA"
+                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWJkZWZlZjU2ZWVmZTE4ZWZmODQzZmIiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTcxMTM4MzA5NywiZXhwIjoxNzEzOTc1MDk3fQ.5ytIWIaQV0CR_2VsMyHU6foBASrIa0q-bekLjql9FZY"
                             }
                         });
                     } catch (error) {

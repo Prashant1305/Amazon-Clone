@@ -139,10 +139,33 @@ export const placeOrder = (token, data) => {
   return response;
 }
 
+// api call  to get all addresses
 export const allAddresses = (token) => {
   const url = `${baseUrl}/api/auth/getAddress`;
   const response = axios.get(url, {
     headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const updateAddress = (token, data) => {
+  const url = `${baseUrl}/api/auth/updateaddress`;
+  const response = axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const addAddress = (token, data) => {
+  const url = `${baseUrl}/api/auth/addaddress`;
+  const response = axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     }
   });
