@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { addImageApi } from '../../../utils/ApiUtils';
+import { addImageApi, deleteImageApi } from '../../../utils/ApiUtils';
 import { toast } from 'react-toastify';
 import { MyLoginValues } from '../../../Context/AuthContext';
 import { v4 as uuid } from 'uuid';
@@ -18,9 +18,28 @@ function AddProductImageInputHandle({ ProductData, setProductData }) {
     const addUrl = (url) => {
         urlText !== "" ? setUrlText(`${urlText}|${url}`) : setUrlText(`${url}`);
     }
-    const removeUrl = (url) => {
+    const removeUrl = async (url) => {
         const temp = "|" + url;
         // console.log(temp);
+        if (url.indexOf('res.cloudinary.com') !== -1) {
+
+            const tempArr = url.split('/');
+            const data = { "public_id": `${tempArr[tempArr.length - 1].split('.')[0]}` };
+            // console.log(data);
+            try {
+                const res = await deleteImageApi(token, data);
+                if (res.status === 200) {
+                    toast.success('image removed from Cloudinary');
+                } else {
+                    toast.error('failed to remove image from Cloudinary');
+                }
+
+            } catch (error) {
+                toast.error('failed to remove image from Cloudinary');
+                console.log(error)
+            }
+
+        }
         urlArr.length === 1 ? setUrlText("") : setUrlText(urlText.replace(temp, ""));
     }
 
