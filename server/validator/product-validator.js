@@ -41,7 +41,7 @@ const productSchema = z.object({
     z.string({ required_error: "url is required" })
       .url({ message: "Invalid url" }),
   ).refine((array) => array.length > 0, {
-    message: "Array must not be empty",
+    message: "Url Array must not be empty",
   }),
 
   rating: z

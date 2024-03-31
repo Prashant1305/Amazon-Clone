@@ -14,7 +14,7 @@ const AddProduct = () => {
     discounted_price: "",
     discount_percentage: "",
     about: "",
-    url: "", // Corrected: changed from "Url" to "url"
+    url: [],
     rating: "",
     rating_count: "",
   });
@@ -44,7 +44,7 @@ const AddProduct = () => {
         discounted_price: 0,
         discount_percentage: 0,
         about: "",
-        url: "", // Corrected: changed from "Url" to "url"
+        url: [],
         rating: 0,
         rating_count: 0,
       });
@@ -56,7 +56,14 @@ const AddProduct = () => {
 
   const handlechange = (e) => {
     console.log("handle change kr rha work");
-    setProductData({ ...ProductData, [e.target.name]: e.target.value });
+    if (Array.isArray(e.target)) {
+      setProductData({ ...ProductData, [e.target.name]: e.target.value });
+
+    }
+    else {
+      setProductData({ ...ProductData, [e.target.name]: e.target.value });
+
+    }
   };
 
   return (
@@ -64,7 +71,7 @@ const AddProduct = () => {
       <section>
         <div className="product_container">
           <div className='sign_header'>
-            <img src='../../blacklogodigitalstore.png' alt='amazonlogo' />
+            <img src='../../blacklogodigitalstore.png' alt='digitalStorelogo' />
           </div>
           <div className="product_details_form">
             <h1>Product Details</h1>
@@ -158,7 +165,7 @@ const AddProduct = () => {
                 />
               </div>
               <div className="form_data">
-                <AddProductImageInputHandle />
+                <AddProductImageInputHandle ProductData={ProductData} setProductData={setProductData} />
               </div>
               <div className="form_data">
                 <label htmlFor="rating">Product Rating</label>

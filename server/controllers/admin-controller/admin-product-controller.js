@@ -1,4 +1,5 @@
 const Product = require("../../models/product-model");
+const { uploadOnCloudinary } = require('../../utils/cloudinary');
 
 const getAllProducts = async (req, res, next) => {
   try {
@@ -67,4 +68,18 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllProducts, addProduct, deleteProduct };
+const uploadImageToCloudinary = async (req, res, next) => {
+  try {
+    // console.log("======req.body=======", req.body);
+    // console.log("=======req.file======", req.file.path);
+    console.log("upload started");
+    const myurl = await uploadOnCloudinary(req.file.path);
+    console.log(myurl);
+    res.status(200).json({ msg: "file uploded succesfully", url: myurl.url })
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+}
+
+module.exports = { getAllProducts, addProduct, deleteProduct, uploadImageToCloudinary };

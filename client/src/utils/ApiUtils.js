@@ -171,3 +171,13 @@ export const addAddress = (token, data) => {
   });
   return response;
 }
+
+export const addImageApi = (token, formData) => {
+  const url = `${baseUrl}/api/admin/product/upload`;
+  const response = axios.post(url, formData, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  return response;
+}

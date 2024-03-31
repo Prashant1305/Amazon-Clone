@@ -1,0 +1,25 @@
+.url_container {
+    /* border: 2px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 50vw;
+    flex-wrap: wrap;
+}
+
+.uploaded_image_single_image {
+    border: 1px solid #a6a6a6;
+    margin: 10px;
+    padding: 1px 1px;
+}
+
+.uploaded_image_single_image img {
+    height: 8vh;
+}
+
+#inp_url_choose_file {
+    border: 1px solid #b5b3b3;
+    padding: 0px 0px 0px 4px;
+    width: 97%;
+    margin: 15px 0px 15px 0px;
+}
