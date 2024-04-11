@@ -23,6 +23,7 @@ import DeleteProduct from "./pages/admin/DeleteProduct";
 import AddAddress from "./pages/AddAddress";
 import Checkout from "./pages/Checkout";
 import EditAddress from "./pages/EditAddress";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function Routing() {
@@ -39,6 +40,8 @@ function Routing() {
         <Route path="addaddress" element={<AddAddress />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="editaddress/:_id" element={<EditAddress />} />
+        <Route path="resetpassword" element={<ResetPassword />} />
+
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />

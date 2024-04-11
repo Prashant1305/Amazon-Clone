@@ -132,6 +132,7 @@ function CartContext({ children }) {
             items.push({ "object_id": i._id, "quantity": i.quantity });
         }
         if (token) {
+            console.log(token);
             postCartData({ items }, token)
                 .then((res) => {
                     if (res.status === 200) {
@@ -145,8 +146,9 @@ function CartContext({ children }) {
         }
     }
     useEffect(() => {
-        updateCartDataToServer();
+
         if (isLogin) {
+            updateCartDataToServer();
             setCartNumber(`${cartData.length}`);
         }
     }, [cartData]);

@@ -39,7 +39,7 @@ function Navbar() {
                     <div className='navlogo'>
                         <NavLink to='/'><img src="../digital store.png" alt="failed to load" /></NavLink>
                     </div>
-                    <div className='navlogo'>
+                    <div className='locationlogo'>
                         <Location />
                     </div>
                     <div className='nav_searchbaar'>
@@ -56,6 +56,8 @@ function Navbar() {
                 <div className='right'>
                     <div className="nav_btn">
                         {clientData && isLogin && clientData.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+                    </div>
+                    <div className="nav_btn">
                         {!isLogin && <NavLink to="/signin">Sign in</NavLink>}{isLogin && <NavLink to="/signout">Sign out</NavLink>}
                     </div>
                     <div className="nav_btn">

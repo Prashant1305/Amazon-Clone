@@ -36,8 +36,8 @@ const Footer = () => {
                 </div>
             </div>
             <div className="lastdetails">
-                <img src="./DigitalStore_PNG25.png" alt="digitalStorelogo" />
-                <p>Conditions of Use & Sale &nbsp; &nbsp;&nbsp;  Privacy Notice  &nbsp; &nbsp;&nbsp; Interest-Based Ads  &nbsp; &nbsp;&nbsp;  © 1996-{year}, Amazon.com, Inc. or its affiliates</p>
+                <img src="../../DigitalStore_PNG25.png" alt="digitalStorelogo" />
+                <p>Conditions of Use & Sale &nbsp; &nbsp;&nbsp;  Privacy Notice  &nbsp; &nbsp;&nbsp; Interest-Based Ads  &nbsp; &nbsp;&nbsp;  © 1996-{year}, DigtalStore.com, Inc. or its affiliates</p>
             </div>
         </footer>
     )

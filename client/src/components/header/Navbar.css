@@ -62,16 +62,13 @@ header nav .nav_searchbaar {
 }
 
 
-/* header nav .left input:focus {
-    border: 2px solid #08f5a6;
-} */
-
 header nav .right {
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: 2px solid red; */
     flex: .3;
+    height: max-content;
 }
 
 header nav .right .nav_btn a {
@@ -79,30 +76,27 @@ header nav .right .nav_btn a {
     font-weight: 500;
     text-decoration: none;
     margin-right: 2px;
-    border: 1px solid #131921;
+    /* border: 1px solid #131921; */
     border-radius: 2px;
     padding: 8px;
 }
 
 
 
-header nav a:hover {
-    /* border: 1px solid white; */
-    /* font-size: larger; */
-    zoom: 1.1;
-
+header nav .nav_btn a:hover,
+.cart_btn:hover,
+.locationlogo:hover {
+    background-color: #5f5c5c;
+    cursor: pointer;
 }
 
-/* header nav .right .avtar:hover {
-    zoom: 1.1;
-} */
 
 header nav .right .cart_btn {
     display: flex;
     margin-left: 22px;
     cursor: pointer;
     margin-top: 2px;
-    padding: 8px;
+    padding: 5px;
     border-radius: 2px;
     border: 1px solid #131921;
     align-items: center;
@@ -110,10 +104,7 @@ header nav .right .cart_btn {
     margin-right: 3px;
 }
 
-header nav .right .cart_btn:hover {
-    /* border: 1px solid white; */
-    zoom: 1.1;
-}
+
 
 header nav .right .cart_btn #icon {
     margin-right: 10px;
