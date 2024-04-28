@@ -51,6 +51,5 @@ const productSchema = z.object({
     .int({ message: "rating count must be an integer" }) // value must be an integer
     .nonnegative({ message: "rating Count must be greater than equal to 0" }),
 });
-console.log("middleware kaam kr rha hai ");
 
 module.exports = { productSchema };

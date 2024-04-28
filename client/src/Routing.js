@@ -16,7 +16,7 @@ import HomePageContext from "./Context/HomePageContext";
 import ProductInDetails from "./pages/ProductInDetails";
 import Cart from "./pages/Cart";
 import ProductItems from "./pages/ProductItems";
-import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLayout from "./components/adminComponents/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AddProduct from "./pages/admin/AddProduct";
 import DeleteProduct from "./pages/admin/DeleteProduct";
@@ -40,7 +40,7 @@ function Routing() {
         <Route path="cart" element={<Cart />} />
         <Route path="productpage" element={<ProductItems />} />
 
-        <Route path="Admin" element={<AdminLayout />}>
+        <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="deleteproduct" element={<DeleteProduct />} />
