@@ -84,14 +84,14 @@ header nav .right .nav_btn a {
 
 
 header nav .nav_btn a:hover,
-.cart_btn:hover,
+.cart_btn1:hover,
 .locationlogo:hover {
     background-color: #5f5c5c;
     cursor: pointer;
 }
 
 
-header nav .right .cart_btn {
+header nav .right .cart_btn1 {
     display: flex;
     margin-left: 22px;
     cursor: pointer;
@@ -106,13 +106,13 @@ header nav .right .cart_btn {
 
 
 
-header nav .right .cart_btn #icon {
+header nav .right .cart_btn1 #icon {
     margin-right: 10px;
     color: #fff;
     margin-top: 2px;
 }
 
-header nav .right .cart_btn p {
+header nav .right .cart_btn1 p {
     color: #fff;
     font-weight: 500;
     font-size: 12px;
@@ -181,7 +181,7 @@ header nav .drawer {
         visibility: hidden;
     }
 
-    header nav .right .cart_btn {
+    header nav .right .cart_btn1 {
         margin-right: 0;
     }
 

@@ -72,7 +72,7 @@ function Cart() {
         </div>
         <div className={styles.bottom_part}>
           <h1>Total Amount - &#8377; {total}</h1>
-          <button className={styles.order_btn} onClick={handlePlaceOrder}>Place order</button>
+          <button className={styles.order_btn} onClick={handlePlaceOrder}>checkout</button>
         </div>
       </div>
     </>

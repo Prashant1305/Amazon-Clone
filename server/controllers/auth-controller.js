@@ -94,26 +94,30 @@ const getCartData = async (req, res, next) => {
 const addAddress = async (req, res, next) => {
     try {
         const email = req.clientAuthData.email;
-        const emailExist = await AddressInfo.findOne({ email });
-
+        let emailExist = await AddressInfo.findOne({ email });
         if (emailExist) {
             // let updatedLst = [...emailExist.deliveryAddress, req.body.deliveryAddress[0]];
             let updatedLst = [...emailExist.deliveryAddress];
-            if (req.body.deliveryAddress[0].defaultAddress) {
+            if (req.body.defaultAddress) {
                 updatedLst.forEach((address) => {
                     address.defaultAddress = false;
                 })
             }
-            updatedLst = [...updatedLst, req.body.deliveryAddress[0]];
+            updatedLst = [...updatedLst, req.body];
             // console.log(emailExist.deliveryAddress);
             await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedLst } });
-            return res.status(200).json({ msg: "address list updated" });
-        }
 
+            //getting id of new address
+            emailExist = await AddressInfo.findOne({ email });
+            const newAddres_id = emailExist.deliveryAddress.filter((address) => {
+                return address.defaultAddress === true
+            })[0]._id;
+            // console.log(newAddres_id);
+            return res.status(200).json({ msg: "address list updated", _id: newAddres_id });
+        }
         const address = { email, deliveryAddress: req.body.deliveryAddress };
         await AddressInfo.create(address);
         res.status(200).json({ message: "Address created successfully" });
-
     } catch (error) {
         console.log(error);
         next(error);
@@ -159,4 +163,17 @@ const updateAddress = async (req, res, next) => {
     }
 }
 
-module.exports = { home, register, login, getClientData, postCartData, getCartData, addAddress, getAddress, updateAddress };
+const removeAddress = async (req, res, next) => {
+
+    const email = req.clientAuthData.email;
+    const deltetedAddress = await AddressInfo.updateOne(
+        { "email": req.clientAuthData.email },
+        { $pull: { "deliveryAddress": { "_id": req.body._id } } });
+    // console.log(deltetedAddress);
+    if (deltetedAddress.modifiedCount === 0) {
+        return res.status(201).json({ msg: "failed to delete address" });
+    }
+    res.status(200).json({ msg: "Address deleted succesfully" })
+}
+
+module.exports = { home, register, login, getClientData, postCartData, getCartData, addAddress, getAddress, updateAddress, removeAddress };

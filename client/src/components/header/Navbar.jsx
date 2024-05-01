@@ -64,7 +64,7 @@ function Navbar() {
                         {/* <a href='/'></a> */}
                     </div>
                     <NavLink to='./cart'>
-                        <div className="cart_btn">
+                        <div className="cart_btn1">
                             <Badge badgeContent={cartNumber} color="primary">
                                 <ShoppingCartIcon id="icon" />
                             </Badge>

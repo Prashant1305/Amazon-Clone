@@ -161,9 +161,21 @@ export const updateAddress = (token, data) => {
   return response;
 }
 
-export const addAddress = (token, data) => {
+export const addAddress = async (token, data) => {
   const url = `${baseUrl}/api/auth/addaddress`;
-  const response = axios.post(url, data, {
+  const response = await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const removeAddress_api = async (token, data) => {
+  console.log(token, data);
+  const url = `${baseUrl}/api/auth/removeaddress`;
+  const response = await axios.post(url, data, {
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`

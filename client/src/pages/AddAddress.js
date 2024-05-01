@@ -1,27 +1,46 @@
 import React, { useState } from "react";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addAddress } from "../utils/ApiUtils";
 import { toast } from 'react-toastify';
+import { MyLoginValues } from "../Context/AuthContext";
+import { MyAddresses } from "../Context/AddressContext";
 
 function AddAddress() {
     const [address, setAddress] = useState({
-        fullName: "",
+        fullname: "",
         phone: "",
         pincode: "",
         flat: "",
         area: "",
         landmark: "",
         town: "",
-        state: ""
+        state: "",
+        defaultAddress: true
     });
+    const { token } = MyLoginValues();
+    const { allAddress, setAllAddress } = MyAddresses();
     const navigate = useNavigate();
-    const handlesubmit = (e) => {
+    const handlesubmit = async (e) => {
         e.preventDefault();
         try {
-            addAddress()
+            const res = await addAddress(token, address);
+
+            if (res.status === 200) {
+                toast.success("address added succesfully");
+                const newAllAddress = allAddress.map((address) => {
+                    address.defaultAddress = false;
+                    return address;
+                })
+                setAllAddress([...newAllAddress, { ...address, _id: res.data._id }])
+            } else {
+                toast.error("failed to update address");
+
+            }
+            navigate("/checkout");
         } catch (error) {
             console.log(error);
+            toast.error("failed to update address");
         }
 
     };
@@ -40,16 +59,16 @@ function AddAddress() {
                         <form onSubmit={handlesubmit}>
                             <h1>Add new address</h1>
                             <div className="form_data">
-                                <label htmlFor="FullName">Full Name</label>
+                                <label htmlFor="fullname">Full Name</label>
                                 <input
                                     type="text"
-                                    name="FullName"
-                                    id="fullName"
+                                    name="fullname"
+                                    id="fullname"
                                     placeholder="Atleast 3 characters "
                                     onChange={(e) => {
                                         handleChange(e);
                                     }}
-                                    value={address.fullName}
+                                    value={address.fullname}
                                 />
                             </div>
                             <div className="form_data">

@@ -3,10 +3,33 @@ import "./Addresses.css";
 import { v4 as uuid } from 'uuid';
 import { MyAddresses } from '../../Context/AddressContext';
 import { useNavigate } from 'react-router-dom';
+import { removeAddress_api } from '../../utils/ApiUtils';
+import { toast } from 'react-toastify';
+import { MyLoginValues } from '../../Context/AuthContext';
 
 function Addresses() {
     const navigate = useNavigate();
-    const { allAddress } = MyAddresses();
+    const { allAddress, setAllAddress } = MyAddresses();
+    const { token } = MyLoginValues();
+
+    const removeAddress = async (_id) => {
+        try {
+            const res = await removeAddress_api(token, { _id });
+            if (res.status === 200) {
+                toast.success("Address removed succesfully");
+                setAllAddress(
+                    allAddress.filter((element) => {
+                        return element._id !== _id
+                    })
+                )
+            }
+            else {
+                toast.error("failed to remove address");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className='address_container' >
@@ -16,9 +39,10 @@ function Addresses() {
                 <p>Add Address</p>
             </div>
             {allAddress && allAddress.map((address) => {
+                console.log(address);
                 return (<div key={uuid()}>
                     <div className='address_box' >
-                        {address.defaultAddress && <div className='default_container'>Default Address</div>}
+                        {address?.defaultAddress && <div className='default_container'>Default Address</div>}
 
                         <div className='full_address_info'>
                             <div className='basic_info_container'>
@@ -38,7 +62,9 @@ function Addresses() {
                         <div className='address_delete_edit'>
                             <span onClick={() => {
                                 navigate(`/editaddress/${address._id}`);
-                            }}>Edit</span> | <span>Remove</span>
+                            }}>Edit</span> | <span onClick={() => {
+                                removeAddress(address._id);
+                            }}>Remove</span>
                         </div>
                     </div>
                 </div>)

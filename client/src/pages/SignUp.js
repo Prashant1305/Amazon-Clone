@@ -17,7 +17,7 @@ function SignUp() {
     e.preventDefault();
     // console.log(userData);
     if (userData.password === userData.passwordAgain) {
-      let temp = userData;
+      let temp = { ...userData };
       delete temp.passwordAgain;
       signup(temp)
         .then((res) => {
