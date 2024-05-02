@@ -6,7 +6,7 @@ const deliveryAddressContext = createContext();
 function AddressContext({ children }) {
 
     const [allAddress, setAllAddress] = useState([]);
-    const { token } = MyLoginValues();
+    const { clientData, token, setClientData } = MyLoginValues();
 
     const getAllAddress = async () => {
         try {
@@ -21,8 +21,22 @@ function AddressContext({ children }) {
     useEffect(() => {
         if (token) {
             getAllAddress();
+        } else {
+            setAllAddress([]);
         }
     }, [token]);
+    useEffect(() => {
+        if (allAddress.length > 0) {
+
+            for (let i of allAddress) {
+                if (i.defaultAddress) {
+                    setClientData({ ...clientData, address: i })
+                    break;
+                }
+            }
+        }
+
+    }, [allAddress]);
 
     return (
         <deliveryAddressContext.Provider value={{ allAddress, setAllAddress, getAllAddress }}>{children}</deliveryAddressContext.Provider>

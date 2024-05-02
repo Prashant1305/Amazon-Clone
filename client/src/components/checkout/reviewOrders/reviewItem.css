@@ -18,7 +18,7 @@
 
 .review_item_name {
     /* border: 2px solid blue; */
-    width: 69%;
+    width: 65%;
     margin: 1%;
 
 }
@@ -44,5 +44,5 @@
     width: 100%;
     font-size: larger;
     font-weight: 800;
-    padding: 4px;
+    padding: 8px;
 }

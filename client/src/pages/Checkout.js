@@ -11,7 +11,7 @@ function Checkout() {
     const [toggleDelivery, setToggleDelivery] = useState(false);
     const [togglePayment, setTogglePayment] = useState(false);
     const [toggleOrders, setToggleOrders] = useState(false);
-    const { token, isLogin } = MyLoginValues();
+    const { token, isLogin, clientData } = MyLoginValues();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,7 +20,9 @@ function Checkout() {
         }
     }, [isLogin]);
 
-
+    const handlePlaceOrder = () => {
+        // write place order code using client data
+    }
     const handleToggle = (e, currState, setstate) => {
         setstate(!currState);
         // console.dir(e.currentTarget.classList);
@@ -65,7 +67,7 @@ function Checkout() {
                     {toggleOrders && <div><ReviewOrders /></div>}
                 </div>
             </div>
-            <button className='place_order'>Place Order</button>
+            <button className='place_order' onClick={handlePlaceOrder}>Place Order</button>
         </div>
     )
 }

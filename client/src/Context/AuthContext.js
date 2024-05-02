@@ -19,7 +19,7 @@ function AuthContext({ children }) {
       getAllClientData(temp)
         .then((res) => {
           // console.log(res.data.msg);
-          setClientData(res.data.msg);
+          setClientData({ ...res.data.msg, method_of_payment: undefined, paid: undefined });
         })
         .catch((error) => {
           console.log(error);
@@ -40,7 +40,7 @@ function AuthContext({ children }) {
   }, [isLogin]);
 
   return (
-    <clientContext.Provider value={{ isLogin, setIsLogin, clientData, token }}>
+    <clientContext.Provider value={{ isLogin, setIsLogin, clientData, token, setClientData }}>
       {children}
     </clientContext.Provider>
   );

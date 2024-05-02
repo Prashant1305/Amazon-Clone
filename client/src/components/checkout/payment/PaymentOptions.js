@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './paymentOption.css'
+import { MyLoginValues } from '../../../Context/AuthContext';
 
 function PaymentOptions() {
+    const { clientData, token, setClientData } = MyLoginValues();
     const [paymentMethod, setPaymentMethod] = useState({
         "upi": false,
         "net_banking": false,
@@ -21,6 +23,18 @@ function PaymentOptions() {
         }
         setPaymentMethod({ ...temp });
     }
+    useEffect(() => {
+        let payment_mode_selected = false;
+        for (let i in paymentMethod) {
+            if (paymentMethod[i]) {
+                setClientData({ ...clientData, method_of_payment: i });
+                payment_mode_selected = true;
+            }
+        }
+        if (!payment_mode_selected) {
+            setClientData({ ...clientData, method_of_payment: undefined });
+        }
+    }, [paymentMethod]);
     return (
         <div className='payment_option_container'>
             <div className='payment_method' onClick={handleClick}>

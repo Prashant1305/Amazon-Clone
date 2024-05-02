@@ -2,10 +2,10 @@ const Order = require("../models/order-model");
 
 const addOrder = async (req, res, next) => {
     try {
-        const clientOrderItems = req.body;
+        const clientOrderDetails = req.body;
         // console.log(req.clientAuthData);
-        const email = req.clientAuthData.email;
-        const clientOrder = { ...clientOrderItems, email };
+        const user = req.clientAuthData._id;
+        const clientOrder = { ...clientOrderDetails, user };
         await Order.create(clientOrder);
         res.status(200).json({ msg: "Order successfully placed" })
 
