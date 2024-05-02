@@ -1,11 +1,11 @@
 import React from 'react'
 import "./Addresses.css";
 import { v4 as uuid } from 'uuid';
-import { MyAddresses } from '../../Context/AddressContext';
+import { MyAddresses } from '../../../Context/AddressContext';
 import { useNavigate } from 'react-router-dom';
-import { removeAddress_api } from '../../utils/ApiUtils';
+import { removeAddress_api } from '../../../utils/ApiUtils';
 import { toast } from 'react-toastify';
-import { MyLoginValues } from '../../Context/AuthContext';
+import { MyLoginValues } from '../../../Context/AuthContext';
 
 function Addresses() {
     const navigate = useNavigate();
@@ -39,7 +39,7 @@ function Addresses() {
                 <p>Add Address</p>
             </div>
             {allAddress && allAddress.map((address) => {
-                console.log(address);
+                // console.log(address);
                 return (<div key={uuid()}>
                     <div className='address_box' >
                         {address?.defaultAddress && <div className='default_container'>Default Address</div>}

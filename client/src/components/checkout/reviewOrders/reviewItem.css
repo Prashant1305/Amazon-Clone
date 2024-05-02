@@ -1,0 +1,48 @@
+.review_item {
+    /* border: 2px solid green; */
+    margin: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.review_item_img img {
+    width: 100%;
+    /* border: 2px solid red; */
+    /* margin: 1px; */
+}
+
+.review_item_img {
+    width: 12%;
+    margin: 1%;
+}
+
+.review_item_name {
+    /* border: 2px solid blue; */
+    width: 69%;
+    margin: 1%;
+
+}
+
+.review_item_qunatity {
+    /* border: 2px solid cyan; */
+    width: 5%;
+    margin: 1%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.review_item_discounted_price {
+    /* border: 2px solid black; */
+    margin: 1%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.review_order_container #total_price {
+    border-top: 2px solid grey;
+    text-align: end;
+    width: 100%;
+    font-size: larger;
+    font-weight: 800;
+    padding: 4px;
+}

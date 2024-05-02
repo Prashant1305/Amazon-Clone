@@ -1,13 +1,23 @@
-.checkout_container {
+.checkout_contianer {
+    /* border: 5px solid green; */
     position: relative;
     width: 100%;
     top: 60px;
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     min-height: 60vh;
+    justify-content: space-between;
+}
+
+.checkout_options {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-self: center;
+    justify-self: center;
+    margin-top: 30px;
 }
 
 .checkout_items {
@@ -32,4 +42,16 @@
 .header_heading {
     font-size: xx-large;
     font-weight: 600;
+}
+
+.checkout_contianer .place_order {
+    /* position: relative;
+    top: 50px; */
+    align-self: flex-end;
+    vertical-align: baseline;
+    margin: 10px;
+    font-size: xx-large;
+    background-color: #ffbc2c;
+    padding: 8px;
+    border: none;
 }
