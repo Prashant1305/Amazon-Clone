@@ -18,6 +18,8 @@ function EditAddress() {
         flat: "",
         area: "",
         state: "",
+        town: "",
+        landmark: "",
         defaultAddress: false
     });
 
@@ -51,8 +53,10 @@ function EditAddress() {
     const handlesubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = { "deliveryAddress": [{ ...editAddressInfo }] };
+            const data = { ...editAddressInfo };
+            console.log(data);
             const res = await updateAddress(token, data);
+            console.log(res);
             toast.success(res.data.msg);
             navigate('/checkout');
             getAllAddress();

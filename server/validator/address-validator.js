@@ -1,4 +1,5 @@
 const { z } = require("zod");
+const { ObjectId } = require("mongodb");
 
 const deliveryLocationSchema = z.object({
     fullname: z
@@ -27,8 +28,9 @@ const deliveryLocationSchema = z.object({
 })
 
 const addressSchema = z.object({
-    deliveryAddress: z.array(deliveryLocationSchema)
-
+    user: z.instanceof(ObjectId),
+    deliveryAddress: deliveryLocationSchema
 })
+//this validator 
 
-module.exports = { addressSchema };
+module.exports = { addressSchema, deliveryLocationSchema };

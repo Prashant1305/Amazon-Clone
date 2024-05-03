@@ -14,7 +14,7 @@ const {
   removeAddress
 } = require("../controllers/auth-controller");
 const { registerSchema, loginSchema } = require("../validator/user-validator");
-const { addressSchema } = require("../validator/address-validator")
+const { addressSchema, deliveryLocationSchema } = require("../validator/address-validator")
 const authMiddleware = require("../middleware/auth-middleware");
 
 router.get("/", home);
@@ -25,7 +25,7 @@ router.post("/postcartdata", authMiddleware, postCartData);
 router.get("/getcartdata", authMiddleware, getCartData);
 router.post("/addaddress", authMiddleware, addAddress);
 router.get("/getaddress", authMiddleware, getAddress);
-router.post("/updateaddress", authMiddleware, validate(addressSchema), updateAddress);
+router.post("/updateaddress", authMiddleware, validate(deliveryLocationSchema), updateAddress);
 router.post("/removeaddress", authMiddleware, removeAddress);
 
 

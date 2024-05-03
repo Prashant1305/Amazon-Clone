@@ -26,11 +26,17 @@ function Checkout() {
 
     const handlePlaceOrder = async () => {
         // write place order code using client data
-        if (!clientData.method_of_payment) {
+        if (!clientData?.method_of_payment) {
             toast.error("please select method of payment");
+            return;
         }
-        if (!clientData.address) {
-            toast.address("please select address");
+        if (!clientData?.address) {
+            toast.error("please select address");
+            return;
+        }
+        if (cartData.length === 0) {
+            toast.error("please add some item in cart");
+            return;
         }
         const items = cartData.map((product) => {
             return { product_id: product._id, quantity: product.quantity }

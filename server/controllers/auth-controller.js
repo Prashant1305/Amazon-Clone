@@ -93,31 +93,25 @@ const getCartData = async (req, res, next) => {
 
 const addAddress = async (req, res, next) => {
     try {
-        const email = req.clientAuthData.email;
-        let emailExist = await AddressInfo.findOne({ email });
-        if (emailExist) {
-            // let updatedLst = [...emailExist.deliveryAddress, req.body.deliveryAddress[0]];
-            let updatedLst = [...emailExist.deliveryAddress];
-            if (req.body.defaultAddress) {
-                updatedLst.forEach((address) => {
-                    address.defaultAddress = false;
-                })
-            }
-            updatedLst = [...updatedLst, req.body];
-            // console.log(emailExist.deliveryAddress);
-            await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedLst } });
+        const _id = req.clientAuthData._id;
+        // let userExist = await AddressInfo.findOne({ _id });
 
-            //getting id of new address
-            emailExist = await AddressInfo.findOne({ email });
-            const newAddres_id = emailExist.deliveryAddress.filter((address) => {
-                return address.defaultAddress === true
-            })[0]._id;
-            // console.log(newAddres_id);
-            return res.status(200).json({ msg: "address list updated", _id: newAddres_id });
-        }
-        const address = { email, deliveryAddress: req.body.deliveryAddress };
-        await AddressInfo.create(address);
-        res.status(200).json({ message: "Address created successfully" });
+        const addressList = await AddressInfo.find({ user: _id });
+        // console.log(addressList)
+        // console.log(_id)
+
+        // changing all defaultAddress to false for this user
+        const temp = await AddressInfo.updateMany(
+            { user: _id },
+            { $set: { "deliveryAddress.defaultAddress": false } }
+        );
+        console.log("updating address", temp);
+
+        const newAddress = { user: _id, deliveryAddress: req.body };
+        const addressCreated = await AddressInfo.create(newAddress);
+        // console.log(addressCreated);
+        res.status(200).json({ msg: "Address Successfully created", _id: addressCreated._id });
+
     } catch (error) {
         console.log(error);
         next(error);
@@ -126,10 +120,13 @@ const addAddress = async (req, res, next) => {
 
 const getAddress = async (req, res, next) => {
     try {
-        const email = req.clientAuthData.email;
-        const addressExist = await AddressInfo.findOne({ email });
+        const _id = req.clientAuthData._id;
+        const addressExist = await AddressInfo.find({ user: _id });
+        const addressList = addressExist.map((address) => {
+            return { ...address.deliveryAddress, _id: address._id }
+        })
         if (addressExist) {
-            return res.status(200).json({ msg: addressExist });
+            return res.status(200).json({ msg: "Some address were Found", addressList });
         } else {
             return res.status(202).json({ msg: "no address found" });
         }
@@ -140,23 +137,28 @@ const getAddress = async (req, res, next) => {
 
 const updateAddress = async (req, res, next) => {
     try {
-        const email = req.clientAuthData.email;
+        const user_id = req.clientAuthData._id;
+        const address_id = req.body._id;
+        const updatedAddress = { ...req.body };
+        delete (updatedAddress._id)
 
-        let addressExist = await AddressInfo.findOne({ email });
-        let defaultAddressChange = req.body.deliveryAddress[0].defaultAddress;
+        let usersOtherAddress = await AddressInfo.find({ user: user_id });
 
-        const updatedAddress = addressExist.deliveryAddress.map((address) => {
+        let newDefaultAddressFeild = req.body.defaultAddress;
+        let oldDefaultAddressFeild = await AddressInfo.findOne({ _id: address_id });
+        oldDefaultAddressFeild = oldDefaultAddressFeild.deliveryAddress.defaultAddress;
 
-            if (req.body.deliveryAddress[0]._id === address._id.toString()) {
-                return req.body.deliveryAddress[0];
-            }
-            if (defaultAddressChange) {
-                address.defaultAddress = false;
-            }
-            return address;
-        })
+        if (newDefaultAddressFeild && !oldDefaultAddressFeild) { // address set to default,then set other address default address to false;
+            await AddressInfo.updateMany(
+                { user: user_id },
+                { $set: { "deliveryAddress.defaultAddress": false } }
+            );
+        }
 
-        await AddressInfo.updateOne({ email }, { $set: { deliveryAddress: updatedAddress } });
+        // updating address provided
+
+        const updateResponse = await AddressInfo.updateOne({ _id: address_id }, { $set: { deliveryAddress: updatedAddress } });
+        console.log(updateResponse);
         res.status(200).json({ msg: "address updated succesfully" });
     } catch (error) {
         next(error);
@@ -165,10 +167,9 @@ const updateAddress = async (req, res, next) => {
 
 const removeAddress = async (req, res, next) => {
 
-    const email = req.clientAuthData.email;
-    const deltetedAddress = await AddressInfo.updateOne(
-        { "email": req.clientAuthData.email },
-        { $pull: { "deliveryAddress": { "_id": req.body._id } } });
+    const _id = req.clientAuthData._id;
+    // console.log(req.body._id)
+    const deltetedAddress = await AddressInfo.deleteOne({ "_id": req.body._id });
     // console.log(deltetedAddress);
     if (deltetedAddress.modifiedCount === 0) {
         return res.status(201).json({ msg: "failed to delete address" });

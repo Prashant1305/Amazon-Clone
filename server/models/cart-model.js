@@ -6,6 +6,8 @@ const cartSchema = new mongoose.Schema({
         unique: true
     },
     items: [{ object_id: String, quantity: Number }],
-});
+},
+    { timestamps: true }
+);
 const Cart = new mongoose.model("cart", cartSchema);
 module.exports = Cart;

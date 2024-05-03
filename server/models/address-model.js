@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const User = require('./user-model');
 const addressSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: User,
     },
-    deliveryAddress: [{
+    deliveryAddress: {
         fullname: {
             type: String,
             required: true
@@ -41,7 +42,9 @@ const addressSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         }
-    }]
-});
+    }
+},
+    { timestamps: true }
+);
 const AddressInfo = new mongoose.model("addressInfo", addressSchema);
 module.exports = AddressInfo;

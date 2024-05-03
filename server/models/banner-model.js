@@ -8,6 +8,8 @@ const bannerSchema = new mongoose.Schema({
         type: String,
         required: false
     }
-});
+},
+    { timestamps: true }
+);
 const Banner = new mongoose.model("banners", bannerSchema);
 module.exports = Banner;

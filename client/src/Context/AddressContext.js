@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { MyLoginValues } from './AuthContext';
 import { allAddresses } from '../utils/ApiUtils';
+import { toast } from 'react-toastify';
+
 
 const deliveryAddressContext = createContext();
 function AddressContext({ children }) {
@@ -11,9 +13,15 @@ function AddressContext({ children }) {
     const getAllAddress = async () => {
         try {
             const temp = await allAddresses(token);
-            // console.log(temp.data.msg.deliveryAddress);
-            setAllAddress(temp.data.msg.deliveryAddress);
+            // console.log(temp.data.addressList);
+            if (temp.data.addressList.length > 0) {
+                toast.success("Address fetched succesfully")
+            } else {
+                toast.info("No Saved address Found")
+            }
+            setAllAddress(temp.data.addressList);
         } catch (error) {
+            toast.error("Failed to fetch address");
             console.log(error);
         }
     }
