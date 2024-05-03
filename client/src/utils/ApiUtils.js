@@ -128,7 +128,7 @@ export const deleteproduct = (id, token) => {
   return response;
 };
 
-export const placeOrder = (token, data) => {
+export const placeOrder_api = (token, data) => {
   const url = `${baseUrl}/api/order/addorder`;
   const response = axios.post(url, data, {
     headers: {

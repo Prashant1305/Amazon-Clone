@@ -6,6 +6,9 @@ import { MyLoginValues } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import PaymentOptions from '../components/checkout/payment/PaymentOptions';
 import ReviewOrders from '../components/checkout/reviewOrders/ReviewOrders';
+import { placeOrder_api } from '../utils/ApiUtils';
+import { CartValue } from '../Context/CartContext';
+import { toast } from 'react-toastify';
 
 function Checkout() {
     const [toggleDelivery, setToggleDelivery] = useState(false);
@@ -13,6 +16,7 @@ function Checkout() {
     const [toggleOrders, setToggleOrders] = useState(false);
     const { token, isLogin, clientData } = MyLoginValues();
     const navigate = useNavigate();
+    const { cartData, setCartData } = CartValue();
 
     useEffect(() => {
         if (isLogin === false) {
@@ -20,8 +24,37 @@ function Checkout() {
         }
     }, [isLogin]);
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = async () => {
         // write place order code using client data
+        if (!clientData.method_of_payment) {
+            toast.error("please select method of payment");
+        }
+        if (!clientData.address) {
+            toast.address("please select address");
+        }
+        const items = cartData.map((product) => {
+            return { product_id: product._id, quantity: product.quantity }
+        })
+        const data = {
+            address: clientData.address,
+            items,
+            method_of_payment: clientData.method_of_payment
+        }
+        console.log(data);
+        try {
+            const res = await placeOrder_api(token, data);
+            if (res.status === 200) {
+                toast.success("Order Placed Succesfully");
+                // setCartData([]);
+                // clientData.method_of_payment=undefined;
+            }
+            toast.error("Failed to place order");
+        } catch (error) {
+            console.log(error);
+            toast.error("connection failure");
+
+        }
+
     }
     const handleToggle = (e, currState, setstate) => {
         setstate(!currState);

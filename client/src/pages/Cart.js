@@ -4,8 +4,7 @@ import styles from "./Cart.module.css";
 import CartItem from "../components/CartItem";
 import { MyLoginValues } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { placeOrder } from "../utils/ApiUtils";
-import { toast } from 'react-toastify';
+
 
 function Cart() {
   const { cartData, setCartData } = CartValue();
