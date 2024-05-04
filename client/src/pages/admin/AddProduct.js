@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AddProduct.css";
 import { addproduct } from "../../utils/ApiUtils";
 import { MyLoginValues } from "../../Context/AuthContext";
+import AddProductImageInputHandle from "../../components/adminComponents/addProduct/AddProductImageInputHandle";
 
 const AddProduct = () => {
   const [ProductData, setProductData] = useState({
@@ -13,7 +14,7 @@ const AddProduct = () => {
     discounted_price: "",
     discount_percentage: "",
     about: "",
-    url: "", // Corrected: changed from "Url" to "url"
+    url: [],
     rating: "",
     rating_count: "",
   });
@@ -22,7 +23,6 @@ const AddProduct = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("ye to work kr raha hai");
       const numericProductData = {
         ...ProductData,
         stock_quantity: parseInt(ProductData.stock_quantity),
@@ -44,7 +44,7 @@ const AddProduct = () => {
         discounted_price: 0,
         discount_percentage: 0,
         about: "",
-        url: "", // Corrected: changed from "Url" to "url"
+        url: [],
         rating: 0,
         rating_count: 0,
       });
@@ -56,7 +56,14 @@ const AddProduct = () => {
 
   const handlechange = (e) => {
     console.log("handle change kr rha work");
-    setProductData({ ...ProductData, [e.target.name]: e.target.value });
+    if (Array.isArray(e.target)) {
+      setProductData({ ...ProductData, [e.target.name]: e.target.value });
+
+    }
+    else {
+      setProductData({ ...ProductData, [e.target.name]: e.target.value });
+
+    }
   };
 
   return (
@@ -64,14 +71,14 @@ const AddProduct = () => {
       <section>
         <div className="product_container">
           <div className='sign_header'>
-            <img src='../../blacklogoamazon.png' alt='amazonlogo' />
+            <img src='../../blacklogodigitalstore.png' alt='digitalStorelogo' />
           </div>
           <div className="product_details_form">
             <h1>Product Details</h1>
             <form onSubmit={handlesubmit}>
               <div className="form_data">
                 <label htmlFor="id">Product ID</label>
-                <input
+                <input className="input_feild"
                   type="text"
                   name="id"
                   id="id"
@@ -82,7 +89,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="name">Product Name</label>
-                <input
+                <input className="input_feild"
                   type="text"
                   name="name"
                   id="name"
@@ -93,7 +100,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="stock_quantity">Stock Quantity</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="stock_quantity"
                   id="stock_quantity"
@@ -104,7 +111,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="category">Category</label>
-                <input
+                <input className="input_feild"
                   type="text"
                   name="category"
                   id="category"
@@ -115,7 +122,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="actual_price">Actual Price</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="actual_price"
                   id="actual_price"
@@ -126,7 +133,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="discounted_price">Discounted Price</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="discounted_price"
                   id="discounted_price"
@@ -137,7 +144,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="discount_percentage">Discount Percentage</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="discount_percentage"
                   id="discount_percentage"
@@ -148,7 +155,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="about">About</label>
-                <input
+                <input className="input_feild"
                   type="text"
                   name="about"
                   id="about"
@@ -158,19 +165,11 @@ const AddProduct = () => {
                 />
               </div>
               <div className="form_data">
-                <label htmlFor="url">Product URL</label>
-                <input
-                  type="text"
-                  name="url"
-                  id="url"
-                  placeholder="https..."
-                  onChange={handlechange}
-                  value={ProductData.url}
-                />
+                <AddProductImageInputHandle ProductData={ProductData} setProductData={setProductData} />
               </div>
               <div className="form_data">
                 <label htmlFor="rating">Product Rating</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="rating"
                   id="rating"
@@ -181,7 +180,7 @@ const AddProduct = () => {
               </div>
               <div className="form_data">
                 <label htmlFor="rating_count">Rating count</label>
-                <input
+                <input className="input_feild"
                   type="number"
                   name="rating_count"
                   id="rating_count"

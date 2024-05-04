@@ -37,9 +37,12 @@ const productSchema = z.object({
     .trim()
     .min(3, { message: "about must be atleast of 3 char." }),
 
-  url: z
-    .string({ required_error: "url is required" })
-    .url({ message: "Invalid url" }),
+  url: z.array(
+    z.string({ required_error: "url is required" })
+      .url({ message: "Invalid url" }),
+  ).refine((array) => array.length > 0, {
+    message: "Url Array must not be empty",
+  }),
 
   rating: z
     .number({ required_error: "rating is required" })

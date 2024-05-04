@@ -17,7 +17,7 @@ function SignUp() {
     e.preventDefault();
     // console.log(userData);
     if (userData.password === userData.passwordAgain) {
-      let temp = userData;
+      let temp = { ...userData };
       delete temp.passwordAgain;
       signup(temp)
         .then((res) => {
@@ -42,7 +42,7 @@ function SignUp() {
       <section>
         <div className="sign_container">
           <div className="sign_header">
-            <img src="./blacklogoamazon.png" alt="amazonlogo" />
+            <img src="./blacklogodigitalstore.png" alt="blacklogodigitalstore" />
           </div>
           <div className="sign_form">
             <form onSubmit={handlesubmit}>

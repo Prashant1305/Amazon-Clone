@@ -103,9 +103,8 @@ function CartContext({ children }) {
             setCartNumber("plz_signin");
 
         } else {
-            let rawToken = localStorage.getItem("token");
-            let len = (rawToken.length) - 2;
-            let new_token = rawToken.substr(1, len);
+            let rawToken = JSON.parse(localStorage.getItem("token"));
+            let new_token = rawToken;
 
             setCartNumber("Loading...");
             getCartDataFromServer(new_token)
@@ -132,6 +131,7 @@ function CartContext({ children }) {
             items.push({ "object_id": i._id, "quantity": i.quantity });
         }
         if (token) {
+            // console.log(token);
             postCartData({ items }, token)
                 .then((res) => {
                     if (res.status === 200) {
@@ -145,8 +145,9 @@ function CartContext({ children }) {
         }
     }
     useEffect(() => {
-        updateCartDataToServer();
+
         if (isLogin) {
+            updateCartDataToServer();
             setCartNumber(`${cartData.length}`);
         }
     }, [cartData]);

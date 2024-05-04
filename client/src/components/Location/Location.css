@@ -1,0 +1,15 @@
+.location_container {
+    border-bottom: 5px solid rgb(248, 4, 4);
+    color: rgb(255, 255, 255);
+    width: 40px;
+}
+
+.Location_icon {
+    scale: 2;
+    margin: 10px;
+}
+
+.underline_green_line {
+    border-bottom: 5px solid rgb(4, 248, 4);
+
+}

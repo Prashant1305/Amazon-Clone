@@ -30,7 +30,7 @@ function ProductInDetails() {
                 <div className="cart_section">
                     <div className="cart_container">
                         <div className="left_cart">
-                            <img src={`${productData.url}`} alt="failed to load" />
+                            <img src={`${productData.url[0]}`} alt="failed to load" />
                             <div className="cart_btn">
                                 <button className="cart_btn1" onClick={() => {
                                     setCartData({ task: "addInCart", productData });

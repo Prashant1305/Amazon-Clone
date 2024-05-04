@@ -12,7 +12,7 @@ function CartItem({ _id, url, name, discounted_price, quantity, stock_quantity }
         <div className={styles.cartItem}>
             {/* left */}
             <div className={styles.imgAndTitle}>
-                <div className={styles.imgContainer}><img src={url} alt="failed to load" className={styles.cartImage} /></div>
+                <div className={styles.imgContainer}><img src={url[0]} alt="failed to load" className={styles.cartImage} /></div>
                 <h3>{name.substr(0, 200)}</h3>
             </div>
             {/* right */}
