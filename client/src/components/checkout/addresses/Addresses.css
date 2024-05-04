@@ -54,6 +54,7 @@
 
 .address_container .add_address {
     border: 1px dashed rgb(203, 207, 207);
+    border-width: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,4 +73,9 @@
     margin: 0px;
     font-weight: 300;
     font-size: small;
+}
+
+.address_container .selected_address {
+    border: 2px solid rgb(5, 149, 238);
+
 }

@@ -51,8 +51,8 @@ function Checkout() {
             const res = await placeOrder_api(token, data);
             if (res.status === 200) {
                 toast.success("Order Placed Succesfully");
-                // setCartData([]);
-                // clientData.method_of_payment=undefined;
+                setCartData({ task: "restoreCart", newCartData: [] });
+                clientData.method_of_payment = undefined;
             }
             toast.error("Failed to place order");
         } catch (error) {

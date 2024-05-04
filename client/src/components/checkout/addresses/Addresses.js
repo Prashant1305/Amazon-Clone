@@ -10,7 +10,7 @@ import { MyLoginValues } from '../../../Context/AuthContext';
 function Addresses() {
     const navigate = useNavigate();
     const { allAddress, setAllAddress } = MyAddresses();
-    const { token } = MyLoginValues();
+    const { token, clientData, setClientData } = MyLoginValues();
 
     const removeAddress = async (_id) => {
         try {
@@ -31,6 +31,13 @@ function Addresses() {
         }
     }
 
+    const selectThisAddress = (e, address) => {
+        console.log(address);
+        // e.currentTarget.classList.toggle("selected_address");
+        console.dir(e.currentTarget);
+        setClientData({ ...clientData, address: address })
+    }
+
     return (
         <div className='address_container' >
             <div className='address_box add_address' onClick={() => {
@@ -41,10 +48,12 @@ function Addresses() {
             {allAddress && allAddress.map((address) => {
                 // console.log(address);
                 return (<div key={uuid()}>
-                    <div className='address_box' >
+                    <div className={`address_box ${(clientData.address === address) ? 'selected_address' : ''}`} onClick={(e) => {
+                        selectThisAddress(e, address);
+                    }}>
                         {address?.defaultAddress && <div className='default_container'>Default Address</div>}
 
-                        <div className='full_address_info'>
+                        <div className='full_address_info' >
                             <div className='basic_info_container'>
                                 <p id='address_name'>{address.fullname}</p>
                                 <p className='address_feild'>{address.flat}</p>
