@@ -14,7 +14,7 @@ const cors = require("cors");
 // handling cors error
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
-  methods: "GET,POST, DELETE, PATCH, HEAD",
+  methods: "GET, POST, DELETE, PATCH, HEAD",
   credentials: true,
 };
 app.use(cors(corsOptions));

@@ -1,0 +1,19 @@
+.payment_option_container {
+    /* border: 2px solid rgb(203, 207, 207); */
+    padding: 4px;
+}
+
+.payment_option_container .payment_method {
+    /* border: 2px solid blue; */
+    margin: 2px;
+    /* height: 20px; */
+    border-bottom: 1px solid rgb(203, 207, 207);
+}
+
+.payment_option_container .payment_method span {
+    /* border: 2px solid green; */
+    margin: 5px;
+    font-size: large;
+    font-weight: 600;
+    width: 100px;
+}

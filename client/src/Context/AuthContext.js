@@ -10,37 +10,38 @@ function AuthContext({ children }) {
   const [clientData, setClientData] = useState();
   const [token, setToken] = useState();
 
-  const fetchClientData = () => {
-    if (isLogin) {
-      // localStorage.setItem("token", JSON.stringify(res.data.token));
-      const temp = JSON.parse(localStorage.getItem("token"));
-      // console.log(temp)
-      setToken(temp);
-      getAllClientData(temp)
-        .then((res) => {
-          // console.log(res.data.msg);
-          setClientData(res.data.msg);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setToken();
-      setClientData();
-      localStorage.removeItem("token");
-      if (isLogin) {
-        setIsLogin(false); // if user put some random token local storage, that will be be handled by this condition
-      }
-    }
-    // console.log("clientData fetched");
-  };
 
   useEffect(() => {
+    const fetchClientData = () => {
+      if (isLogin) {
+        // localStorage.setItem("token", JSON.stringify(res.data.token));
+        const temp = JSON.parse(localStorage.getItem("token"));
+        // console.log(temp)
+        setToken(temp);
+        getAllClientData(temp)
+          .then((res) => {
+            // console.log(res.data.msg);
+            setClientData({ ...res.data.msg, method_of_payment: undefined, paid: undefined });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        setToken();
+        setClientData();
+        localStorage.removeItem("token");
+        if (isLogin) {
+          setIsLogin(false); // if user put some random token local storage, that will be be handled by this condition
+        }
+      }
+      // console.log("clientData fetched");
+    };
+
     fetchClientData();
   }, [isLogin]);
 
   return (
-    <clientContext.Provider value={{ isLogin, setIsLogin, clientData, token }}>
+    <clientContext.Provider value={{ isLogin, setIsLogin, clientData, token, setClientData }}>
       {children}
     </clientContext.Provider>
   );

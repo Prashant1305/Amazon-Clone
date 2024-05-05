@@ -10,11 +10,12 @@ function SignIn() {
         email: "",
         password: "",
     })
+    const [btnActive, setbtnActive] = useState(false);
     const { setIsLogin } = MyLoginValues();
     const navigate = useNavigate();
     const handlesubmit = (e) => {
         e.preventDefault();
-        // console.log(userData);
+
         signin(userData)
             .then((res) => {
                 // console.log(res);
@@ -32,18 +33,20 @@ function SignIn() {
             .catch((error) => { console.log(error); })
     }
     const handleChange = (e) => {
-        // console.log(e.target.id);
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        if (userData.email !== "" && userData.password.length > 0) {
+            setbtnActive(true);
+        }
     }
     return (
         <>
             <section>
                 <div className='sign_container'>
                     <div className='sign_header'>
-                        <img src='./blacklogoamazon.png' alt='amazonlogo' />
+                        <img src='./blacklogodigitalstore.png' alt='digitalStorelogo' />
                     </div>
                     <div className='sign_form'>
-                        <form onSubmit={handlesubmit}>
+                        <form >
                             <h1>Sign-In</h1>
                             <div className='form_data'>
                                 <label htmlFor='Email'>Email</label>
@@ -53,14 +56,19 @@ function SignIn() {
                                 <label htmlFor='password'>Password</label>
                                 <input type='password' name="password" id="password" placeholder='At least 6 character' onChange={(e) => { handleChange(e) }} value={userData.password} />
                             </div>
-                            <button className='signin_btn'>Submit</button>
+
+                            {btnActive && <button className='signin_btn' onClick={(e) => {
+                                handlesubmit(e);
+                            }}>Submit</button >}
+
+                            {!btnActive && <button className='signin_btn' disabled>Submit</button >}
                         </form>
                     </div>
                     <div className='create_accountinfo'>
-                        <p>New To Amazon</p>
+                        <p>New To Digital Store</p>
                         <button onClick={() => {
                             navigate("/signup");
-                        }}>Create your Amazon Account</button>
+                        }}>Create your Digital Store Account</button>
                     </div>
                 </div>
             </section>

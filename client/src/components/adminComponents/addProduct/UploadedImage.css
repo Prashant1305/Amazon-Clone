@@ -1,0 +1,18 @@
+.preview_image {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -15px;
+}
+
+.preview_image .cross_btn {
+    /* border: 2px solid pink; */
+    width: fit-content;
+    align-self: flex-end;
+    background-color: none;
+    z-index: 2;
+    height: 15px;
+    position: relative;
+    right: -8px;
+    color: #a6a6a6;
+}

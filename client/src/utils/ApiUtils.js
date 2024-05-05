@@ -128,7 +128,7 @@ export const deleteproduct = (id, token) => {
   return response;
 };
 
-export const placeOrder = (token, data) => {
+export const placeOrder_api = (token, data) => {
   const url = `${baseUrl}/api/order/addorder`;
   const response = axios.post(url, data, {
     headers: {
@@ -136,5 +136,70 @@ export const placeOrder = (token, data) => {
       "Authorization": `Bearer ${token}`,
     },
   });
+  return response;
+}
+
+// api call  to get all addresses
+export const allAddresses = (token) => {
+  const url = `${baseUrl}/api/auth/getAddress`;
+  const response = axios.get(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const updateAddress = (token, data) => {
+  const url = `${baseUrl}/api/auth/updateaddress`;
+  const response = axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const addAddress = async (token, data) => {
+  const url = `${baseUrl}/api/auth/addaddress`;
+  const response = await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const removeAddress_api = async (token, data) => {
+  console.log(token, data);
+  const url = `${baseUrl}/api/auth/removeaddress`;
+  const response = await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return response;
+}
+
+export const addImageApi = (token, formData) => {
+  const url = `${baseUrl}/api/admin/product/uploadImages`;
+  const response = axios.post(url, formData, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  return response;
+}
+
+export const deleteImageApi = (token, data) => {
+  const url = `${baseUrl}/api/admin/product/deleteImage`;
+  const response = axios.post(url, data, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
   return response;
 }

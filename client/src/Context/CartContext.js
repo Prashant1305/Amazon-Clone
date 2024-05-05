@@ -103,21 +103,20 @@ function CartContext({ children }) {
             setCartNumber("plz_signin");
 
         } else {
-            let rawToken = localStorage.getItem("token");
-            let len = (rawToken.length) - 2;
-            let new_token = rawToken.substr(1, len);
+            let rawToken = JSON.parse(localStorage.getItem("token"));
+            let new_token = rawToken;
 
             setCartNumber("Loading...");
             getCartDataFromServer(new_token)
                 .then((res) => {
                     if (res.status === 200) {
-                        setCartData({ task: "restoreCart", newCartData: res.data.msg });
+                        // if cart has some value before login let it retain and add value from mongodb
+                        setCartData({ task: "restoreCart", newCartData: [...res.data.msg, ...cartData] });
                     }
                     else if (res.status === 202) {
-                        setCartNumber(0);
-                        toast.success(res.data.msg);
+                        toast.info(res.data.msg);
                     }
-
+                    setCartNumber(cartData.length);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -125,13 +124,16 @@ function CartContext({ children }) {
         }
     }, [isLogin]);
 
-    const updateCartDataToServer = () => {
-        // if (cartData.length > 0) {
-        const items = [];
-        for (let i of cartData) {
-            items.push({ "object_id": i._id, "quantity": i.quantity });
-        }
-        if (token) {
+
+    useEffect(() => {
+        const updateCartDataToServer = () => {
+            // if (cartData.length > 0) {
+            const items = [];
+            for (let i of cartData) {
+                items.push({ "object_id": i._id, "quantity": i.quantity });
+            }
+
+            // console.log(token);
             postCartData({ items }, token)
                 .then((res) => {
                     if (res.status === 200) {
@@ -139,17 +141,17 @@ function CartContext({ children }) {
                     }
                 })
                 .catch((error) => {
-                    toast.error("failed to upload");
+                    toast.error("failed to upload cart data");
                     console.log("error from updateCartDataToServer", error);
                 })
+
         }
-    }
-    useEffect(() => {
-        updateCartDataToServer();
-        if (isLogin) {
+
+        if (isLogin && token && cartData.length > 0) {
+            updateCartDataToServer();
             setCartNumber(`${cartData.length}`);
         }
-    }, [cartData]);
+    }, [cartData, token]);
 
     return (
         <cartWalaContext.Provider value={{ cartData, setCartData, cartNumber, setCartNumber }}>{children}</cartWalaContext.Provider>

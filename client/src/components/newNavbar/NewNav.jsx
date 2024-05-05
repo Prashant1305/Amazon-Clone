@@ -46,11 +46,11 @@ function NewNav() {
                     <Button onClick={(e) => {
                         handleClick(e.target.textContent);
                         // console.dir(e.target.textContent);
-                    }}><p>Prime</p></Button>
+                    }}><p>Prime Members</p></Button>
                     <Button onClick={(e) => {
                         handleClick(e.target.textContent);
                         // console.dir(e.target.textContent);
-                    }}><p>Amazon Pay</p></Button>
+                    }}><p>Bank Offer</p></Button>
                 </div>
                 <div className="right_data">
                     <img src="../../../../../../nav.jpg" alt="failed to load" />

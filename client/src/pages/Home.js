@@ -1,8 +1,38 @@
 import Banner from "../components/home/Banner";
 import "./Home.css";
-import Slide from "../components/home/Slide";
+import SlideCarousel from "../components/home/SlideCarousel";
+import { topTendiscountedProducts, topTwentyRatedProducts } from "../utils/ApiUtils";
+import React, { useEffect, useState } from 'react'
 
 function Home() {
+  const [todaysDealData, setTodaysDealData] = useState([]);
+  const [itemInStoreData, setItemInStoreData] = useState([]);
+  const fetchTodaysDeal = () => {
+    topTendiscountedProducts()
+      .then((res) => {
+        // console.log(res.data.msg);
+        setTodaysDealData(res.data.msg);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+  const itemInStore = () => {
+    topTwentyRatedProducts()
+      .then((res) => {
+        // console.log(res.data.msg);
+        setItemInStoreData(res.data.msg);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+
+  useEffect(() => {
+    fetchTodaysDeal();
+    itemInStore();
+  }, []);
+
   return (
     <>
       <div className="home_section">
@@ -11,7 +41,8 @@ function Home() {
         </div>
         <div className="slide_part">
           <div className="left_slide">
-            <Slide title="Today's Deal" />
+            {/* <Slide title="Today's Deal" /> */}
+            <SlideCarousel title={"Today's Deal"} data={todaysDealData} />
           </div>
           <div className="right_slide">
             <h4>Festive latest launches</h4>
@@ -21,7 +52,8 @@ function Home() {
             />
           </div>
         </div>
-        <Slide title="Item in store" />
+
+        <SlideCarousel title={"Item in store"} data={itemInStoreData} />
       </div>
     </>
   );

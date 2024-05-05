@@ -9,6 +9,7 @@ import { MyLoginValues } from '../../Context/AuthContext';
 import { CartValue } from '../../Context/CartContext';
 import { getSearchResult } from '../../utils/ApiUtils';
 import { MyProduct } from '../../Context/ProductItemContext';
+import Location from '../Location/Location';
 
 function Navbar() {
     const { isLogin, clientData } = MyLoginValues();
@@ -36,7 +37,10 @@ function Navbar() {
             <nav>
                 <div className='left'>
                     <div className='navlogo'>
-                        <NavLink to='/'><img src="../amazon_PNG25.png" alt="failed to load" /></NavLink>
+                        <NavLink to='/'><img src="../digital store.png" alt="failed to load" /></NavLink>
+                    </div>
+                    <div className='locationlogo'>
+                        <Location />
                     </div>
                     <div className='nav_searchbaar'>
                         <input type="text" name="searchInput" id="searchInput" onChange={(e) => {
@@ -52,13 +56,15 @@ function Navbar() {
                 <div className='right'>
                     <div className="nav_btn">
                         {clientData && isLogin && clientData.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+                    </div>
+                    <div className="nav_btn">
                         {!isLogin && <NavLink to="/signin">Sign in</NavLink>}{isLogin && <NavLink to="/signout">Sign out</NavLink>}
                     </div>
                     <div className="nav_btn">
                         {/* <a href='/'></a> */}
                     </div>
                     <NavLink to='./cart'>
-                        <div className="cart_btn">
+                        <div className="cart_btn1">
                             <Badge badgeContent={cartNumber} color="primary">
                                 <ShoppingCartIcon id="icon" />
                             </Badge>

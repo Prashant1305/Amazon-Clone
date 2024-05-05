@@ -1,0 +1,81 @@
+.address_container {
+    /* border: 2px solid green; */
+    border: 1px solid rgb(203, 207, 207);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address_box {
+    border: 1px solid rgb(203, 207, 207);
+    border-radius: 10px;
+    margin: 10px 10px;
+    height: 36vh;
+    width: 33vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.basic_info_container {
+    height: 26vh;
+    overflow: auto;
+    /* border: 2px solid pink; */
+}
+
+.full_address_info {
+    /* height: 30vh; */
+    width: 30vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 2px solid cyan; */
+}
+
+#address_name {
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.address_delete_edit {
+    color: rgb(56, 134, 223);
+    padding: 10px;
+    /* border: 2px solid green; */
+}
+
+.address_delete_edit :hover {
+    cursor: pointer;
+    box-shadow: #e9e2e2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.address_container .add_address {
+    border: 1px dashed rgb(203, 207, 207);
+    border-width: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.address_container .add_address:hover {
+    cursor: pointer;
+}
+
+.default_container {
+    /* border: 2px solid red; */
+    border-bottom: 2px solid rgb(203, 207, 207);
+    padding-left: 4px;
+    width: 30vh;
+    margin: 0px;
+    font-weight: 300;
+    font-size: small;
+}
+
+.address_container .selected_address {
+    border: 2px solid rgb(5, 149, 238);
+
+}

@@ -1,4 +1,5 @@
 const Product = require("../../models/product-model");
+const { uploadOnCloudinary, deleteFromCloudinary } = require('../../utils/cloudinary');
 
 const getAllProducts = async (req, res, next) => {
   try {
@@ -67,4 +68,34 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllProducts, addProduct, deleteProduct };
+const uploadImageToCloudinary = async (req, res, next) => {
+  try {
+    // console.log("======req.body=======", req.body);
+    // console.log("=======req.file======", req.file.path);
+    console.log("upload started");
+    const myurl = await uploadOnCloudinary(req.file.path);
+    console.log(myurl);
+    res.status(200).json({ msg: "file uploded succesfully", url: myurl.url, public_id: myurl.public_id })
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+}
+
+const deleteImageFromCloudinary = async (req, res, next) => {
+  try {
+    console.log("Delete started");
+    const response = await deleteFromCloudinary(req.body.public_id);
+    // console.log(response);
+    if (response.result === 'ok') {
+      res.status(200).json({ msg: "file deleted succesfully" });
+    } else {
+      res.status(500).json({ msg: "fail to delete file " });
+    }
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+}
+
+module.exports = { getAllProducts, addProduct, deleteProduct, uploadImageToCloudinary, deleteImageFromCloudinary };
