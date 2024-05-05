@@ -3,7 +3,7 @@ import './paymentOption.css'
 import { MyLoginValues } from '../../../Context/AuthContext';
 
 function PaymentOptions() {
-    const { clientData, token, setClientData } = MyLoginValues();
+    const { clientData, setClientData } = MyLoginValues();
     const [paymentMethod, setPaymentMethod] = useState({
         "upi": false,
         "net_banking": false,

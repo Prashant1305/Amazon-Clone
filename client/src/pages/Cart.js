@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Cart() {
-  const { cartData, setCartData } = CartValue();
+  const { cartData } = CartValue();
   const [total, setTotal] = useState(0);
   const { isLogin } = MyLoginValues();
   const navigate = useNavigate();

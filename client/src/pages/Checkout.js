@@ -53,6 +53,7 @@ function Checkout() {
                 toast.success("Order Placed Succesfully");
                 setCartData({ task: "restoreCart", newCartData: [] });
                 clientData.method_of_payment = undefined;
+                navigate("/");
             }
             toast.error("Failed to place order");
         } catch (error) {
