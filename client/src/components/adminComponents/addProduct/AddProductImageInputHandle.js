@@ -19,8 +19,8 @@ function AddProductImageInputHandle({ ProductData, setProductData }) {
         urlText !== "" ? setUrlText(`${urlText}|${url}`) : setUrlText(`${url}`);
     }
     const removeUrl = async (url) => {
-        const temp = "|" + url;
-        // console.log(temp);
+        const temp = (urlText.indexOf(url) === 0) ? `${url}` : `|${url}`;
+
         if (url.indexOf('res.cloudinary.com') !== -1) {
 
             const tempArr = url.split('/');

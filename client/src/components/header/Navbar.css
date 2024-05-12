@@ -84,8 +84,7 @@ header nav .right .nav_btn a {
 
 
 header nav .nav_btn a:hover,
-.cart_btn1:hover,
-.locationlogo:hover {
+.cart_btn1:hover {
     background-color: #5f5c5c;
     cursor: pointer;
 }

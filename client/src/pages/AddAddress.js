@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import "./AddAddress.css";
 import { useNavigate } from "react-router-dom";
 import { addAddress } from "../utils/ApiUtils";
 import { toast } from 'react-toastify';
 import { MyLoginValues } from "../Context/AuthContext";
 import { MyAddresses } from "../Context/AddressContext";
+import useGeoLocation from "../components/Location/hooks/useGeoLocation";
 
 function AddAddress() {
     const [address, setAddress] = useState({
@@ -16,11 +17,14 @@ function AddAddress() {
         landmark: "",
         town: "",
         state: "",
+        longitude: "",
+        latitude: "",
         defaultAddress: true
     });
     const { token } = MyLoginValues();
     const { allAddress, setAllAddress } = MyAddresses();
     const navigate = useNavigate();
+    const location = useGeoLocation();
     const handlesubmit = async (e) => {
         e.preventDefault();
         try {
@@ -48,6 +52,11 @@ function AddAddress() {
         // console.log(address);
         setAddress({ ...address, [e.target.id]: e.target.value });
     };
+    useEffect(() => {
+        if (location.loaded && !location.error) {
+            setAddress({ ...address, longitude: location.cordinates.lng, latitude: location.cordinates.lat })
+        }
+    }, [location])
     return (
         <>
             <section>
@@ -156,6 +165,32 @@ function AddAddress() {
                                     value={address.state}
                                 />
                             </div>
+                            <label htmlFor="cordintes">Cordinates</label>
+                            <div className="cordinates">
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="latitude"
+                                        id="latitude"
+                                        onChange={(e) => {
+                                            handleChange(e);
+                                        }}
+                                        value={address.latitude}
+                                        placeholder="Latitude"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="longitude"
+                                        id="longitude"
+                                        onChange={(e) => {
+                                            handleChange(e);
+                                        }}
+                                        value={address.longitude}
+                                        placeholder="Longitude"
+                                    />
+                                </div>
+                            </div>
+
                             <button className="signin_btn">Add address</button>
                         </form>
                     </div>
