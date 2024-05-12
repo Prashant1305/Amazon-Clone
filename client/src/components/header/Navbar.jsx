@@ -9,7 +9,6 @@ import { MyLoginValues } from '../../Context/AuthContext';
 import { CartValue } from '../../Context/CartContext';
 import { getSearchResult } from '../../utils/ApiUtils';
 import { MyProduct } from '../../Context/ProductItemContext';
-import Location from '../Location/Location';
 
 function Navbar() {
     const { isLogin, clientData } = MyLoginValues();
@@ -39,9 +38,7 @@ function Navbar() {
                     <div className='navlogo'>
                         <NavLink to='/'><img src="../digital store.png" alt="failed to load" /></NavLink>
                     </div>
-                    <div className='locationlogo'>
-                        <Location />
-                    </div>
+
                     <div className='nav_searchbaar'>
                         <input type="text" name="searchInput" id="searchInput" onChange={(e) => {
                             handlechange(e)
